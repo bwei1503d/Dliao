@@ -28,6 +28,8 @@ import com.bw.dliao.widget.cityview.myinterface.SelectAddressInterface;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//zmuhanxibaweiZ1
 public class SpalshActivity extends IActivity {
 
     private Button button;
@@ -47,7 +49,10 @@ public class SpalshActivity extends IActivity {
 
 
 
-        toActivity(TabActivity.class,null,0);
+        toActivity(LoginActivity.class,null,0);
+
+
+//        111
 
 
     }
