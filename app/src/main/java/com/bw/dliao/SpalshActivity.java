@@ -47,12 +47,14 @@ public class SpalshActivity extends IActivity {
 
 
 
+        System.loadLibrary("core");
+
+
 
 
         toActivity(LoginActivity.class,null,0);
 
 
-//        111
 
 
     }
