@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_bg_color"
+    tools:context="com.bw.dliao.fragments.RegisterIntroduceFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:layout_margin="@dimen/height20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请用一句话描述一下自己"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:maxLines="2"
+        android:id="@+id/register_des"/>
+
+    <Button
+        android:layout_marginRight="@dimen/height20"
+        android:layout_marginLeft="@dimen/height20"
+        android:text="@string/save"
+        android:textColor="@color/whitecolor"
+        android:background="@drawable/login_btn_selector"
+        android:layout_marginTop="@dimen/height20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_des_save"/>
+
+</LinearLayout>
