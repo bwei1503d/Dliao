@@ -1,4 +1,4 @@
-package com.bw.dliao.widget;
+package com.bw.dliao.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

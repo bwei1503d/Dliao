@@ -35,6 +35,7 @@ public class RegisterActivity extends IActivity {
 
 
     private List<Fragment> list = new ArrayList<Fragment>();
+    private RegisterInforFragment inforFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +49,32 @@ public class RegisterActivity extends IActivity {
 
         fragmentManager = getSupportFragmentManager();
 
+        inforFragment = new RegisterInforFragment();
 
         list.add(new RegisterSms());
-        list.add(new RegisterInforFragment());
+        list.add(inforFragment);
         list.add(new RegisterIntroduceFragment());
 
 
-         switchIFragment(0,list,R.id.register_container);
+        switchIFragment(0,list,R.id.register_container);
+
+
+    }
+
+
+
+
+
+
+    public void setDes(String des){
+        inforFragment.setDes(des);
+
+
+
+    }
+    public void setPhone(String phone){
+
+        inforFragment.setPhone(phone);
 
 
     }

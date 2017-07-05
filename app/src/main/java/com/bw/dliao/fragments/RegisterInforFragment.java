@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,13 @@ import android.widget.TextView;
 
 import com.bw.dliao.R;
 import com.bw.dliao.activitys.RegisterActivity;
-import com.bw.dliao.base.IFragment;
+import com.bw.dliao.base.BaseMvpFragment;
+import com.bw.dliao.bean.RegisterBean;
+import com.bw.dliao.cipher.Md5Utils;
+import com.bw.dliao.presenter.RegisterInforFragmentPresenter;
+import com.bw.dliao.view.RegisterInforFragmentView;
+import com.bw.dliao.widget.cityview.SelectAddressDialog;
+import com.bw.dliao.widget.cityview.myinterface.SelectAddressInterface;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +31,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterInforFragment extends IFragment {
+public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragmentView, RegisterInforFragmentPresenter> implements RegisterInforFragmentView {
 
 
     @BindView(R.id.register_username)
@@ -40,12 +47,20 @@ public class RegisterInforFragment extends IFragment {
     Unbinder unbinder;
     @BindView(R.id.register_jieshao_value)
     TextView registerJieshaoValue;
+    @BindView(R.id.register_password)
+    EditText registerPassword;
 
     public RegisterInforFragment() {
         // Required empty public constructor
     }
 
-    RegisterActivity activity ;
+
+    @Override
+    public RegisterInforFragmentPresenter initPresenter() {
+        return new RegisterInforFragmentPresenter();
+    }
+
+    RegisterActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,7 +78,7 @@ public class RegisterInforFragment extends IFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.register_sex, R.id.register_age, R.id.register_diqu_value,R.id.register_jieshao_value ,R.id.register_infor_btn_next})
+    @OnClick({R.id.register_sex, R.id.register_age, R.id.register_diqu_value, R.id.register_jieshao_value, R.id.register_infor_btn_next})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.register_sex:
@@ -73,14 +88,21 @@ public class RegisterInforFragment extends IFragment {
                 showAgeDialog();
                 break;
             case R.id.register_diqu_value:
+                showLocal();
                 break;
             case R.id.register_infor_btn_next:
+
+
+                toData();
+
+
                 break;
             case R.id.register_jieshao_value:
                 activity.toPos(2);
                 break;
         }
     }
+
 
     private String[] sexArry = new String[]{"女", "男"};
 
@@ -97,24 +119,81 @@ public class RegisterInforFragment extends IFragment {
         builder.show();
     }
 
+    AlertDialog.Builder builder;
 
-    private void showAgeDialog(){
-        final String [] ages  =  getResources().getStringArray(R.array.age);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("请选择年龄");
-        builder.setItems(ages, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                registerAge.setText(ages[which]);
-            }
-        });
+    private void showAgeDialog() {
+        if (builder == null) {
+            final String[] ages = getResources().getStringArray(R.array.age);
+            builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("请选择年龄");
+            builder.setItems(ages, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    registerAge.setText(ages[which]);
+                }
+            });
+        }
+
         builder.show();
 
     }
 
 
+    private String phone;
+
+    public void setPhone(String phone) {
+
+        this.phone = phone;
 
 
+    }
 
+    public void setDes(String des) {
+        if (!TextUtils.isEmpty(des)) {
+            registerJieshaoValue.setText(des);
+        }
+
+    }
+
+    private void showLocal() {
+
+        SelectAddressDialog dialog = new SelectAddressDialog(getActivity(), new SelectAddressInterface() {
+            @Override
+            public void setAreaString(String area) {
+                registerDiquValue.setText(area);
+            }
+        }, 3, null);
+        dialog.showDialog();
+
+    }
+
+
+    /**
+     * 判断所有的参数 非空
+     * 注册 添加 草稿功能
+     */
+    private void toData() {
+
+
+        presenter.vaildInfor(phone, registerUsername.getText().toString().trim(), registerSex.getText().toString().trim()
+                , registerAge.getText().toString().trim(), registerDiquValue.getText().toString().trim()
+                , registerJieshaoValue.getText().toString().trim(), Md5Utils.getMD5(registerPassword.getText().toString().trim()));
+
+
+    }
+
+
+    @Override
+    public void registerSuccess(RegisterBean registerBean) {
+        //跳到上传形象照页面
+
+    }
+
+    @Override
+    public void registerFailed(int code) {
+
+        // 给一个用户友好的提示
+
+    }
 }

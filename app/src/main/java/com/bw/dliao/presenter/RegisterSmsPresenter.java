@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.bw.dliao.base.BasePresenter;
 import com.bw.dliao.model.RegisterSmsModelImpl;
 import com.bw.dliao.view.RegisterSmsView;
-import com.bw.dliao.widget.PhoneCheckUtils;
+import com.bw.dliao.utils.PhoneCheckUtils;
 
 /**
  * Created by muhanxi on 17/7/5.

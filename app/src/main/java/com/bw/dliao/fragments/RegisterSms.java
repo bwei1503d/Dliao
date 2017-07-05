@@ -118,6 +118,7 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
                 break;
             case R.id.register_sms_btn_next:
 
+                registerActivity.setPhone(registerSmsEdittextPhone.getText().toString().trim());
                 presenter.nextStep(registerSmsEdittextPhone.getText().toString().trim(),registerSmsEdittextPassword.getText().toString().trim());
 
 
@@ -141,7 +142,7 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
 
     }
 
-
+    private Disposable disposable ;
     /**
      * 显示倒计时
      */
@@ -165,6 +166,7 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
                     public void onSubscribe(@NonNull Disposable d) {
 
 
+                        disposable = d ;
 //                        d.dispose();
 
                     }
@@ -199,8 +201,19 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
     @Override
     public void toNextPage() {
 
+
+
        registerActivity.toPos(1);
 
 
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(disposable != null){
+            disposable.dispose();
+        }
     }
 }
