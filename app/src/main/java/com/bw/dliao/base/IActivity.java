@@ -2,12 +2,19 @@ package com.bw.dliao.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.bw.dliao.R;
+
+import java.util.List;
+
+import static android.R.id.list;
 
 
 /**
@@ -16,11 +23,13 @@ import com.bw.dliao.R;
 public class IActivity extends FragmentActivity implements View.OnClickListener{
 
     private TextView textViewTitle;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_i);
+        fragmentManager = getSupportFragmentManager();
 
 
 
@@ -29,13 +38,33 @@ public class IActivity extends FragmentActivity implements View.OnClickListener{
     }
 
 
+    /**
+     * 切换fragment
+     * @param pos
+     * @param list
+     */
+    public void switchIFragment(int pos, List<Fragment> list,int containerId){
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if (!list.get(pos).isAdded()) {
+            fragmentTransaction.add(containerId, list.get(pos),list.get(pos).getClass().getSimpleName());
+        }
+        for(int i=0;i<list.size();i++){
+            if(i == pos){
+                fragmentTransaction.show(list.get(pos));
+            }else {
+                fragmentTransaction.hide(list.get(i));
+            }
+        }
+        fragmentTransaction.commit();
+    }
 
-    public void setPubTitle(String title){
+
+    public void setIPubTitle(String title){
         textViewTitle = (TextView) findViewById(R.id.pub_title_title);
         textViewTitle.setText(title);
     }
 
-    public void setLeftBtn(){
+    public void setILeftBtn(){
         Button btnRight = (Button) findViewById(R.id.pub_title_leftbtn);
         btnRight.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +80,7 @@ public class IActivity extends FragmentActivity implements View.OnClickListener{
      * @param bundle
      * @param requestCode
      */
-    public void toActivity(Class clazz , Bundle bundle, int requestCode){
+    public void toIActivity(Class clazz , Bundle bundle, int requestCode){
         Intent intent = new Intent(this, clazz);
         if (bundle != null) {
             intent.putExtras(bundle);

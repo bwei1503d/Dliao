@@ -1,4 +1,4 @@
-package com.bw.dliao.mview;
+package com.bw.dliao.view;
 
 /**
  * Created by muhanxi on 17/7/2.

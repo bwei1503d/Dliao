@@ -28,4 +28,9 @@ public class IFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_i, container, false);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy this = " + this);
+    }
 }

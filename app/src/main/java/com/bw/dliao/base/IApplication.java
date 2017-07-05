@@ -26,4 +26,18 @@ public class IApplication extends MobApplication {
 
 
     }
+
+
+
+    public static IApplication getApplication(){
+        if(application == null){
+            application = getApplication() ;
+        }
+        return application;
+    }
+
+
+
+
+
 }

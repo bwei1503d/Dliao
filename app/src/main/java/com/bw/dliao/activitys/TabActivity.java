@@ -84,25 +84,7 @@ public class TabActivity extends IActivity implements ButtomLayout.OnSelectListe
 
     public void switchFragment(int pos){
 
-        FragmentTransaction transaction =  fragmentManager.beginTransaction() ;
-
-
-        if(!fragments.get(pos).isAdded()){
-
-            transaction.add(R.id.container,fragments.get(pos),fragments.get(pos).getClass().getSimpleName());
-        }
-
-        for(int i=0;i<fragments.size();i++){
-
-            if(i == pos){
-                transaction.show(fragments.get(pos));
-            }else {
-                transaction.hide(fragments.get(i));
-            }
-
-        }
-        transaction.commit();
-
+        switchIFragment(pos,fragments,R.id.container);
 
     }
 
