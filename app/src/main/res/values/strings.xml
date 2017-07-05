@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">D聊</string>
+
+
+    <string name="tab_home_text">寻缘</string>
+    <string name="tab_discover_text">信箱</string>
+    <string name="tab_feed_text">新鲜事</string>
+    <string name="tab_me_text">我的</string>
+
+
+    <string name="login">登录</string>
+    <string name="login_hint_phone">请输入手机号码</string>
+    <string name="login_hint_password">请输入手机密码</string>
+
+    <string name="not_login">无法登录</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="next_step">下一步</string>
+    <string name="register_title">注册</string>
+
+    <string name="register_sms">获取验证码</string>
+
+    <string name="register_nickname">昵称</string>
+    <string name="register_password">密码</string>
+
+    <string name="register_sex">性别</string>
+    <string name="register_man_value">男</string>
+
+    <string name="register_age">年龄</string>
+    <string name="register_age_value">20</string>
+
+
+    <string name="register_jieshao">简介</string>
+    <string name="register_jieshao_value">一句话描述一下自己</string>
+
+
+    <string name="register_diqu">地区</string>
+    <string name="register_diqu_value">请选择</string>
+
+    <string name="save">保存</string>
+
+</resources>
