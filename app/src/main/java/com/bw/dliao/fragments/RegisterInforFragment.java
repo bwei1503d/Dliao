@@ -5,28 +5,44 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.dliao.R;
+import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.activitys.RegisterActivity;
+import com.bw.dliao.activitys.UploadPhotoActivity;
+import com.bw.dliao.base.AppManager;
 import com.bw.dliao.base.BaseMvpFragment;
+import com.bw.dliao.base.IApplication;
 import com.bw.dliao.bean.RegisterBean;
 import com.bw.dliao.cipher.Md5Utils;
 import com.bw.dliao.presenter.RegisterInforFragmentPresenter;
 import com.bw.dliao.view.RegisterInforFragmentView;
+import com.bw.dliao.widget.MyToast;
 import com.bw.dliao.widget.cityview.SelectAddressDialog;
 import com.bw.dliao.widget.cityview.myinterface.SelectAddressInterface;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding2.widget.RxAdapterView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,8 +109,11 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
             case R.id.register_infor_btn_next:
 
 
-                toData();
+//                toData();
 
+                activity.toIActivity(UploadPhotoActivity.class,null,0);
+                AppManager.getAppManager().finishActivity(getActivity());
+                AppManager.getAppManager().finishActivity(LoginActivity.class);
 
                 break;
             case R.id.register_jieshao_value:
@@ -175,10 +194,49 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
      */
     private void toData() {
 
+        //可以实现 监听 edittext 内容变化
+//        TextWatcher textWatcher = new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        } ;
+//
+//
+//        registerUsername.addTextChangedListener(textWatcher);
 
-        presenter.vaildInfor(phone, registerUsername.getText().toString().trim(), registerSex.getText().toString().trim()
-                , registerAge.getText().toString().trim(), registerDiquValue.getText().toString().trim()
-                , registerJieshaoValue.getText().toString().trim(), Md5Utils.getMD5(registerPassword.getText().toString().trim()));
+//        RxAdapterView.itemClicks()
+
+
+//        RxTextView.afterTextChangeEvents(new TextView(getActivity())).subscribe(new Consumer<TextViewAfterTextChangeEvent>() {
+//            @Override
+//            public void accept(@NonNull TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) throws Exception {
+////                textViewAfterTextChangeEvent.view().getText().
+//            }
+//        })
+
+
+        RxView.clicks(registerInforBtnNext).throttleFirst(5, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(@NonNull Object o) throws Exception {
+
+                        presenter.vaildInfor(phone, registerUsername.getText().toString().trim(), registerSex.getText().toString().trim()
+                                , registerAge.getText().toString().trim(), registerDiquValue.getText().toString().trim()
+                                , registerJieshaoValue.getText().toString().trim(), Md5Utils.getMD5(registerPassword.getText().toString().trim()));
+                    }
+                });
+
 
 
     }
@@ -188,12 +246,23 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
     public void registerSuccess(RegisterBean registerBean) {
         //跳到上传形象照页面
 
+        if(registerBean.getResult_code() == 200){
+            activity.toIActivity(UploadPhotoActivity.class,null,0);
+            AppManager.getAppManager().finishActivity(getActivity());
+            AppManager.getAppManager().finishActivity(LoginActivity.class);
+
+
+        }else {
+            MyToast.makeText(IApplication.getApplication(),registerBean.getResult_message(), Toast.LENGTH_SHORT);
+        }
+
     }
 
     @Override
     public void registerFailed(int code) {
-
         // 给一个用户友好的提示
+        MyToast.makeText(IApplication.getApplication(),code+"", Toast.LENGTH_SHORT);
+
 
     }
 }

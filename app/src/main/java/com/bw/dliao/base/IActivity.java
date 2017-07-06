@@ -32,6 +32,8 @@ public class IActivity extends FragmentActivity implements View.OnClickListener{
         fragmentManager = getSupportFragmentManager();
 
 
+        AppManager.getAppManager().addActivity(this);
+
 
 
 
@@ -95,6 +97,15 @@ public class IActivity extends FragmentActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getAppManager().finishActivity(this);
+
 
     }
 }

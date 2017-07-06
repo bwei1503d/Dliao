@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_bg_color"
+    tools:context="com.bw.dliao.activitys.UploadPhotoActivity">
+
+
+    <include layout="@layout/public_title" android:layout_width="match_parent" android:layout_height="@dimen/public_title_height" />
+
+
+    <ImageView
+        android:layout_marginTop="@dimen/height40"
+        android:layout_gravity="center"
+        android:background="@drawable/user_icon_default"
+        android:layout_width="@dimen/height100"
+        android:layout_height="@dimen/height100" />
+
+    <TextView
+        android:textColor="@color/main_color"
+        android:layout_marginTop="@dimen/height20"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="一张清晰的头像可以吸引异性"/>
+
+    <Button
+        android:layout_marginRight="@dimen/height20"
+        android:layout_marginLeft="@dimen/height20"
+        android:text="拍照"
+        android:textColor="@color/whitecolor"
+        android:background="@drawable/login_btn_selector"
+        android:layout_marginTop="@dimen/height20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/upload_photo_camera"/>
+
+
+    <Button
+        android:layout_marginRight="@dimen/height20"
+        android:layout_marginLeft="@dimen/height20"
+        android:text="本地上传"
+        android:textColor="@color/whitecolor"
+        android:background="@drawable/login_btn_selector"
+        android:layout_marginTop="@dimen/height20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/upload_photo_localphoto"/>
+
+</LinearLayout>

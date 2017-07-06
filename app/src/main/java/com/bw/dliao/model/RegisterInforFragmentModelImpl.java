@@ -37,7 +37,7 @@ public class RegisterInforFragmentModelImpl implements RegisterInforFragmentMode
         map.put("user.sign",sign);
 
 
-        RetrofitManager.post("http://169.254.130.134:8080/MyInterface/userAction_add.action", map, new BaseObserver() {
+        RetrofitManager.post("http://169.254.88.91:8080/MyInterface/userAction_add.action", map, new BaseObserver() {
             @Override
             public void onSuccess(String result) {
 
@@ -45,13 +45,13 @@ public class RegisterInforFragmentModelImpl implements RegisterInforFragmentMode
                 Gson gson = new Gson();
                 RegisterBean registerBean = gson.fromJson(result, RegisterBean.class);
 
-
-                PreferencesUtils.addConfigInfo(IApplication.getApplication(),"phone",registerBean.getData().getPhone());
-                PreferencesUtils.addConfigInfo(IApplication.getApplication(),"password",registerBean.getData().getPassword());
-                PreferencesUtils.addConfigInfo(IApplication.getApplication(),"yxpassword",registerBean.getData().getYxpassword());
-                PreferencesUtils.addConfigInfo(IApplication.getApplication(),"uid",registerBean.getData().getUserId());
-                PreferencesUtils.addConfigInfo(IApplication.getApplication(),"nickname",registerBean.getData().getNickname());
-
+                if(registerBean.getResult_code() == 200){
+                    PreferencesUtils.addConfigInfo(IApplication.getApplication(),"phone",registerBean.getData().getPhone());
+                    PreferencesUtils.addConfigInfo(IApplication.getApplication(),"password",registerBean.getData().getPassword());
+                    PreferencesUtils.addConfigInfo(IApplication.getApplication(),"yxpassword",registerBean.getData().getYxpassword());
+                    PreferencesUtils.addConfigInfo(IApplication.getApplication(),"uid",registerBean.getData().getUserId());
+                    PreferencesUtils.addConfigInfo(IApplication.getApplication(),"nickname",registerBean.getData().getNickname());
+                }
                 listener.onSuccess(registerBean);
 
             }

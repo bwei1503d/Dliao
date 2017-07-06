@@ -31,6 +31,7 @@ public class SortUtils {
             sb.append(entry.getValue()+"&");
         }
         result = sb.toString().substring(0, sb.toString().length()-1) ;
+        System.out.println("last result = " + result);
         return  result ;
 
     }

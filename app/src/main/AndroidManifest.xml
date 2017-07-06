@@ -2,12 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bw.dliao">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".base.IApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CAppTheme">
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="1f2a06c6cca20" />
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="62183728136ab66360efc0378c10c6c4" />
+
         <activity android:name=".SpalshActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +43,13 @@
         <activity
             android:name=".activitys.LoginActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".activitys.RegisterActivity"/>
+        <activity android:name=".activitys.RegisterActivity" />
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".activitys.UploadPhotoActivity"></activity>
     </application>
 
 </manifest>
