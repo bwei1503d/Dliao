@@ -33,11 +33,14 @@ public class RegisterInforFragmentModelImpl implements RegisterInforFragmentMode
         map.put("user.area",area);
         map.put("user.age",age);
         map.put("user.introduce",introduce);
+        System.out.println("SortUtils.getMapResult(SortUtils.sortString(map)) = " + SortUtils.getMapResult(SortUtils.sortString(map)));
+
         String sign =  JNICore.getSign(SortUtils.getMapResult(SortUtils.sortString(map))) ;
         map.put("user.sign",sign);
 
+        System.out.println("sign = " + sign);
 
-        RetrofitManager.post("http://169.254.88.91:8080/MyInterface/userAction_add.action", map, new BaseObserver() {
+        RetrofitManager.post("http://qhb.2dyt.com/MyInterface/userAction_add.action", map, new BaseObserver() {
             @Override
             public void onSuccess(String result) {
 

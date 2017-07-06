@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -33,7 +34,7 @@ public class RetrofitManager {
 
 
     private   static ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://qbh.2dyt.com")
+            .baseUrl("http://qbh.2dyt.com/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .client(okHttpClient)
             //把 以前的 call 转化成 Observable
@@ -72,6 +73,12 @@ public class RetrofitManager {
     }
 
 
+    public static void uploadPhoto(MultipartBody multipartBody, Observer<String> observer){
+        apiService.uploadPhoto(multipartBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
 
 
 

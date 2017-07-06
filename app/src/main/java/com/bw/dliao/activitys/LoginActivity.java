@@ -9,6 +9,8 @@ import com.bw.dliao.R;
 import com.bw.dliao.base.BaseMvpActivity;
 import com.bw.dliao.cipher.aes.JNCryptorUtils;
 import com.bw.dliao.cipher.rsa.RsaUtils;
+import com.bw.dliao.core.JNICore;
+import com.bw.dliao.core.SortUtils;
 import com.bw.dliao.view.LoginView;
 import com.bw.dliao.presenter.LoginPresenter;
 
@@ -104,13 +106,15 @@ public class LoginActivity extends BaseMvpActivity<LoginView,LoginPresenter> {
     public void onClick() {
 
 
+        String sign =  JNICore.getSign("123456") ;
+        System.out.println("sign = " + sign);
 
 
 
 //       String result =  JNICore.getSign("1111");
 //        System.out.println("result = " + result);
 
-        toIActivity(RegisterActivity.class,null,0);
+//        toIActivity(RegisterActivity.class,null,0);
 //        presenter
 
 

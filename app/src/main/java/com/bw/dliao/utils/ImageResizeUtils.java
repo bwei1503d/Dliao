@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import static android.graphics.BitmapFactory.decodeFile;
 
@@ -25,7 +27,7 @@ public class ImageResizeUtils {
      * @param path
      * @param specifiedWidth
      */
-    public Bitmap resizeImage(String path,int specifiedWidth) throws Exception{
+    public static Bitmap resizeImage(String path,int specifiedWidth) throws Exception{
 
 
         Bitmap bitmap = null;
@@ -83,18 +85,9 @@ public class ImageResizeUtils {
 //            等比压缩
             m.setScale(scaleValue, scaleValue);
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, true);
-//            // 假如拉伸后的图片的高度小于屏幕高度的两倍
-//            if (bitmap.getHeight() == 0 || bitmap.getWidth() == 0) {
-//                return null;
-//            }
-//            if (bitmap.getHeight() * scaleValue <= getScreenMetrics(MyApplication.getMyApplication().getApplicationContext()).y * 2) {
-//            } else {
-//                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), (int) (getScreenMetrics(MyApplication.getMyApplication().getApplicationContext()).y / scaleValue), m, true);
-//            }
             return bitmap;
         } catch (OutOfMemoryError e) {
             e.printStackTrace();
-//			System.gc();
             return null;
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,6 +126,29 @@ public class ImageResizeUtils {
         }
         return degree;
     }
+
+
+    public static void copyStream(InputStream inputStream, OutputStream outStream) throws Exception {
+        try {
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = inputStream.read(buffer)) != -1) {
+                outStream.write(buffer, 0, len);
+            }
+            outStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(inputStream != null){
+                inputStream.close();
+            }
+            if(outStream != null){
+                outStream.close();
+            }
+        }
+
+    }
+
 
 
 }

@@ -41,7 +41,7 @@ public interface ApiService {
 
     //上传图片
     @Multipart
-    @POST("Bwei/upload")
-    Call<String> uploadPhoto(@Part("image") MultipartBody file);
+    @POST("MyInterface/userAction_uploadImage.action")
+    Observable<String> uploadPhoto(@Part("user.file") MultipartBody file);
 
 }

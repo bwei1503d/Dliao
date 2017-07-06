@@ -1,11 +1,13 @@
 package com.bw.dliao.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -89,10 +91,11 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
         };
         // 注册回调监听接口
         SMSSDK.registerEventHandler(eventHandler);
+        imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         return view;
     }
-
+    InputMethodManager imm ;
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -120,6 +123,7 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
 
                 registerActivity.setPhone(registerSmsEdittextPhone.getText().toString().trim());
                 presenter.nextStep(registerSmsEdittextPhone.getText().toString().trim(),registerSmsEdittextPassword.getText().toString().trim());
+                imm.hideSoftInputFromWindow(registerSmsEdittextPhone.getWindowToken(), 0);
 
 
                 break;

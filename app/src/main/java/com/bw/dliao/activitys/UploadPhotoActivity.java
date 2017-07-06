@@ -4,9 +4,11 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -16,16 +18,26 @@ import android.widget.Toast;
 
 import com.bw.dliao.R;
 import com.bw.dliao.base.IActivity;
+import com.bw.dliao.network.BaseObserver;
+import com.bw.dliao.network.RetrofitManager;
+import com.bw.dliao.utils.Constants;
 import com.bw.dliao.utils.ImageResizeUtils;
 import com.bw.dliao.utils.SDCardUtils;
 import com.bw.dliao.widget.MyToast;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URLDecoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -34,6 +46,9 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 import static android.R.attr.bitmap;
+import static android.R.attr.path;
+import static cn.smssdk.utils.b.e;
+import static com.bw.dliao.utils.ImageResizeUtils.copyStream;
 
 /**
  * 上传照片 到形象照
@@ -96,7 +111,7 @@ public class UploadPhotoActivity extends IActivity {
     /**
      * 打开系统相机
      */
-    @NeedsPermission(Manifest.permission.CAMERA)
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA} )
     public void toCamera(){
         try {
             Intent intentNow = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -107,11 +122,11 @@ public class UploadPhotoActivity extends IActivity {
         }
     }
 
-    @OnShowRationale(Manifest.permission.CAMERA)
+    @OnShowRationale({Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA})
     public void showRationaleForCamera(final PermissionRequest request){
 
         new AlertDialog.Builder(this)
-                .setMessage("需要打开您的相机来上传照片")
+                .setMessage("需要打开您的相机来上传照片并保存照片")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -129,14 +144,14 @@ public class UploadPhotoActivity extends IActivity {
     }
 
 
-    @OnPermissionDenied(Manifest.permission.CAMERA)
+    @OnPermissionDenied({Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA})
     public void onDenied(){
         Toast.makeText(this, "权限被拒绝", Toast.LENGTH_SHORT).show();
 
     }
 
 
-    @OnNeverAskAgain(Manifest.permission.CAMERA)
+    @OnNeverAskAgain({Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA})
     public void onNeverAsyAgain(){
         Toast.makeText(this, "不再提示", Toast.LENGTH_SHORT).show();
     }
@@ -148,6 +163,7 @@ public class UploadPhotoActivity extends IActivity {
      */
     public void toPhoto(){
         try {
+            createLocalPhotoName();
             Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
             getAlbum.setType("image/*");
             startActivityForResult(getAlbum, INTENTFORPHOTO);
@@ -165,13 +181,18 @@ public class UploadPhotoActivity extends IActivity {
                 toCheckPermissionCamera();
                 break;
             case R.id.upload_photo_localphoto:
+                toPhoto();
                 break;
         }
     }
 
 
 
+
+
+
     public void toCheckPermissionCamera(){
+
         UploadPhotoActivityPermissionsDispatcher.toCameraWithCheck(this);
     }
 
@@ -190,6 +211,65 @@ public class UploadPhotoActivity extends IActivity {
             case INTENTFORPHOTO:
                 //相册
 
+                try {
+                    // 必须这样处理，不然在4.4.2手机上会出问题
+                    Uri originalUri = data.getData();
+                    File f = null;
+                    if (originalUri != null) {
+                        f = new File(SDCardUtils.photoCacheDir, LocalPhotoName);
+                        String[] proj = {MediaStore.Images.Media.DATA};
+                        Cursor actualimagecursor =  this.getContentResolver().query(originalUri, proj, null, null, null);
+                        if (null == actualimagecursor) {
+                            if (originalUri.toString().startsWith("file:")) {
+                                File file = new File(originalUri.toString().substring(7, originalUri.toString().length()));
+                                if(!file.exists()){
+                                    //地址包含中文编码的地址做utf-8编码
+                                    originalUri = Uri.parse(URLDecoder.decode(originalUri.toString(),"UTF-8"));
+                                    file = new File(originalUri.toString().substring(7, originalUri.toString().length()));
+                                }
+                                FileInputStream inputStream = new FileInputStream(file);
+                                FileOutputStream outputStream = new FileOutputStream(f);
+                                copyStream(inputStream, outputStream);
+                            }
+                        } else {
+                            // 系统图库
+                            int actual_image_column_index = actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                            actualimagecursor.moveToFirst();
+                            String img_path = actualimagecursor.getString(actual_image_column_index);
+                            if (img_path == null) {
+                                InputStream inputStream = this.getContentResolver().openInputStream(originalUri);
+                                FileOutputStream outputStream = new FileOutputStream(f);
+                                copyStream(inputStream, outputStream);
+                            } else {
+                                File file = new File(img_path);
+                                FileInputStream inputStream = new FileInputStream(file);
+                                FileOutputStream outputStream = new FileOutputStream(f);
+                                copyStream(inputStream, outputStream);
+                            }
+
+                        }
+                        Bitmap bitmap = ImageResizeUtils.resizeImage(f.getAbsolutePath(), Constants.RESIZE_PIC);
+                        FileOutputStream fos = new FileOutputStream(f.getAbsolutePath());
+                        if (bitmap != null) {
+                            if (bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fos)) {
+                                fos.close();
+                                fos.flush();
+                            }
+                            if (!bitmap.isRecycled()) {
+                                bitmap.isRecycled();
+                            }
+
+                            uploadFile(f);
+
+                        }
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+
+
                 break;
             case INTENTFORCAMERA:
 //                相机
@@ -197,7 +277,7 @@ public class UploadPhotoActivity extends IActivity {
 
                     //file 就是拍照完 得到的原始照片
                     File file = new File(SDCardUtils.photoCacheDir, LocalPhotoName);
-//                    Bitmap bitmap = ImageResizeUtils.getSpecifyWidthImage(file.getAbsolutePath(), STAND_PIC_SIZE);
+                    Bitmap bitmap = ImageResizeUtils.resizeImage(file.getAbsolutePath(), Constants.RESIZE_PIC);
                     FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
                     if (bitmap != null) {
                         if (bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fos)) {
@@ -205,11 +285,14 @@ public class UploadPhotoActivity extends IActivity {
                             fos.flush();
                         }
                         if (!bitmap.isRecycled()) {
+                            //通知系统 回收bitmap
                             bitmap.isRecycled();
                         }
+                        uploadFile(file);
                     }
-                } catch (Exception e) {
 
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
 
@@ -223,4 +306,39 @@ public class UploadPhotoActivity extends IActivity {
 
 
     }
+
+
+
+    public void uploadFile(File file){
+
+
+        if(!file.exists()){
+            MyToast.makeText(this," 照片不存在",Toast.LENGTH_SHORT);
+            return;
+        }
+        String [] arr = file.getAbsolutePath().split("/");
+
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+        MultipartBody body = new MultipartBody.Builder().addFormDataPart("image",arr[arr.length-1],requestFile).build();
+
+//        MultipartBody.Part part = MultipartBody.Part.createFormData("image", arr[arr.length-1], requestFile);
+
+
+        RetrofitManager.uploadPhoto( body, new BaseObserver() {
+            @Override
+            public void onSuccess(String result) {
+                System.out.println("result = " + result);
+            }
+
+            @Override
+            public void onFailed(int code) {
+
+            }
+        });
+
+
+    }
+
 }

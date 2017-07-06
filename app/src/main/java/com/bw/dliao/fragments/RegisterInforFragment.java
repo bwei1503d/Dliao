@@ -26,6 +26,7 @@ import com.bw.dliao.base.IApplication;
 import com.bw.dliao.bean.RegisterBean;
 import com.bw.dliao.cipher.Md5Utils;
 import com.bw.dliao.presenter.RegisterInforFragmentPresenter;
+import com.bw.dliao.utils.DialogUtils;
 import com.bw.dliao.view.RegisterInforFragmentView;
 import com.bw.dliao.widget.MyToast;
 import com.bw.dliao.widget.cityview.SelectAddressDialog;
@@ -109,11 +110,11 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
             case R.id.register_infor_btn_next:
 
 
-//                toData();
+                toData();
 
-                activity.toIActivity(UploadPhotoActivity.class,null,0);
-                AppManager.getAppManager().finishActivity(getActivity());
-                AppManager.getAppManager().finishActivity(LoginActivity.class);
+//                activity.toIActivity(UploadPhotoActivity.class,null,0);
+//                AppManager.getAppManager().finishActivity(getActivity());
+//                AppManager.getAppManager().finishActivity(LoginActivity.class);
 
                 break;
             case R.id.register_jieshao_value:
