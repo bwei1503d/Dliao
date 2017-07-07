@@ -15,6 +15,7 @@ import com.bw.dliao.core.JNICore;
 import com.bw.dliao.core.SortUtils;
 import com.bw.dliao.network.BaseObserver;
 import com.bw.dliao.network.RetrofitManager;
+import com.bw.dliao.utils.Constants;
 import com.bw.dliao.view.LoginView;
 import com.bw.dliao.presenter.LoginPresenter;
 
@@ -130,7 +131,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView,LoginPresenter> {
         map.put("user.password", Md5Utils.getMD5(password));
         map.put("user.secretkey",rsaRandomKey);
 
-        RetrofitManager.post("http://169.254.159.77:8080/MyInterface/userAction_login.action", map, new BaseObserver() {
+        RetrofitManager.post(Constants.LOGIN_ACTION, map, new BaseObserver() {
             @Override
             public void onSuccess(String result) {
                 System.out.println("result = " + result);

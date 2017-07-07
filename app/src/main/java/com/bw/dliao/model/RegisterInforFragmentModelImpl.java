@@ -6,6 +6,7 @@ import com.bw.dliao.core.JNICore;
 import com.bw.dliao.core.SortUtils;
 import com.bw.dliao.network.BaseObserver;
 import com.bw.dliao.network.RetrofitManager;
+import com.bw.dliao.utils.Constants;
 import com.bw.dliao.utils.PreferencesUtils;
 import com.google.gson.Gson;
 
@@ -40,7 +41,7 @@ public class RegisterInforFragmentModelImpl implements RegisterInforFragmentMode
 
 //        System.out.println("sign = " + sign);
 
-        RetrofitManager.post("http://qhb.2dyt.com/MyInterface/userAction_add.action", map, new BaseObserver() {
+        RetrofitManager.post(Constants.REGISTER_ACTION, map, new BaseObserver() {
             @Override
             public void onSuccess(String result) {
 
