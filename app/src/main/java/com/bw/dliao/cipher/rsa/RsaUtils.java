@@ -41,10 +41,16 @@ public class RsaUtils {
         return getStringRandom(16);
     }
 
+
+    /**
+     * rsa 公钥进行加密
+     * @param context
+     * @param random
+     * @return
+     */
     public String createRsaSecret(Context context,String random){
         long currentTimer = System.currentTimeMillis();
         String afterEncrypt = Rsa.encryptByPublic(String.valueOf(random));
-        System.out.println("afterEncrypt = " + afterEncrypt);
         afterEncrypt = afterEncrypt.replaceAll("\\r|\\n","").trim();
         return afterEncrypt;
     }

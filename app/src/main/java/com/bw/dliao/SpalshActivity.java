@@ -52,7 +52,7 @@ public class SpalshActivity extends IActivity {
 
 
 
-        toIActivity(LoginActivity.class,null,0);
+        toIActivity(TabActivity.class,null,0);
 
 
 

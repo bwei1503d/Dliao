@@ -104,6 +104,7 @@ public class IActivity extends FragmentActivity implements View.OnClickListener{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        System.out.println("onDestroy = " + this);
         AppManager.getAppManager().finishActivity(this);
 
 

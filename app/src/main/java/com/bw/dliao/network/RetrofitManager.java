@@ -1,6 +1,8 @@
 package com.bw.dliao.network;
 
 import com.bw.dliao.base.IApplication;
+import com.bw.dliao.core.JNICore;
+import com.bw.dliao.core.SortUtils;
 import com.bw.dliao.network.cookie.CookiesManager;
 
 import java.util.Map;
@@ -34,7 +36,7 @@ public class RetrofitManager {
 
 
     private   static ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://qbh.2dyt.com/")
+            .baseUrl("http://qhb.2dyt.com/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .client(okHttpClient)
             //把 以前的 call 转化成 Observable
@@ -67,14 +69,18 @@ public class RetrofitManager {
 
 
     public static void post(String url,Map<String,String> map, Observer<String> observer){
+
+        String sign =  JNICore.getSign(SortUtils.getMapResult(SortUtils.sortString(map))) ;
+        map.put("user.sign",sign);
+
           apiService.post(url,map).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                   .subscribe(observer);
     }
 
 
-    public static void uploadPhoto(MultipartBody multipartBody, Observer<String> observer){
-        apiService.uploadPhoto(multipartBody)
+    public static void uploadPhoto(MultipartBody multipartBody,Map<String,String> map, Observer<String> observer){
+        apiService.uploadPhoto(multipartBody,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

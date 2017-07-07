@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
@@ -42,6 +43,6 @@ public interface ApiService {
     //上传图片
     @Multipart
     @POST("MyInterface/userAction_uploadImage.action")
-    Observable<String> uploadPhoto(@Part("user.file") MultipartBody file);
+    Observable<String> uploadPhoto(@Part("user.file") MultipartBody file, @PartMap Map<String,String> map);
 
 }

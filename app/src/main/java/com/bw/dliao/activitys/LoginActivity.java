@@ -7,10 +7,14 @@ import android.widget.TextView;
 
 import com.bw.dliao.R;
 import com.bw.dliao.base.BaseMvpActivity;
+import com.bw.dliao.base.IApplication;
+import com.bw.dliao.cipher.Md5Utils;
 import com.bw.dliao.cipher.aes.JNCryptorUtils;
 import com.bw.dliao.cipher.rsa.RsaUtils;
 import com.bw.dliao.core.JNICore;
 import com.bw.dliao.core.SortUtils;
+import com.bw.dliao.network.BaseObserver;
+import com.bw.dliao.network.RetrofitManager;
 import com.bw.dliao.view.LoginView;
 import com.bw.dliao.presenter.LoginPresenter;
 
@@ -20,6 +24,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.bw.dliao.cipher.rsa.RsaUtils.getStringRandom;
 
 public class LoginActivity extends BaseMvpActivity<LoginView,LoginPresenter> {
     @BindView(R.id.pub_title_leftbtn)
@@ -105,9 +111,43 @@ public class LoginActivity extends BaseMvpActivity<LoginView,LoginPresenter> {
     @OnClick(R.id.login_btn_login)
     public void onClick() {
 
+       String phone =   loginEdittextPhone.getText().toString().trim() ;
+        String password = loginEdittextPassword.getText().toString().trim();
 
-        String sign =  JNICore.getSign("123456") ;
-        System.out.println("sign = " + sign);
+
+
+      String randomKey =   RsaUtils.getStringRandom(16);
+
+
+      String rsaRandomKey =   RsaUtils.getInstance().createRsaSecret(IApplication.getApplication(),randomKey);
+
+
+      String cipherPhone =   JNCryptorUtils.getInstance().encryptData(phone,IApplication.getApplication(),randomKey);
+
+
+        Map map = new HashMap<String,String>();
+        map.put("user.phone",cipherPhone);
+        map.put("user.password", Md5Utils.getMD5(password));
+        map.put("user.secretkey",rsaRandomKey);
+
+        RetrofitManager.post("http://169.254.159.77:8080/MyInterface/userAction_login.action", map, new BaseObserver() {
+            @Override
+            public void onSuccess(String result) {
+                System.out.println("result = " + result);
+            }
+
+            @Override
+            public void onFailed(int code) {
+
+            }
+        });
+
+
+
+
+
+//        String sign =  JNICore.getSign("123456") ;
+//        System.out.println("sign = " + sign);
 
 
 
@@ -118,10 +158,6 @@ public class LoginActivity extends BaseMvpActivity<LoginView,LoginPresenter> {
 //        presenter
 
 
-//        Map map = new HashMap<String,String>();
-//        map.put("username","18511085102");
-//        map.put("password","18511085102");
-//        map.put("timer","11111222222");
 //
 //        //排序 去掉中文
 //        Map map1 =  SortUtils.sortString(map);

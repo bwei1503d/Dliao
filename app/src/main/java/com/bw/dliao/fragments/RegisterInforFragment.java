@@ -3,6 +3,7 @@ package com.bw.dliao.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.bw.dliao.R;
 import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.activitys.RegisterActivity;
+import com.bw.dliao.activitys.TabActivity;
 import com.bw.dliao.activitys.UploadPhotoActivity;
 import com.bw.dliao.base.AppManager;
 import com.bw.dliao.base.BaseMvpFragment;
@@ -42,8 +44,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -227,11 +231,17 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
 //        })
 
 
-        RxView.clicks(registerInforBtnNext).throttleFirst(5, TimeUnit.SECONDS)
+//        DialogUtils.createLoadingDialog(getActivity()).show();
+
+
+
+        RxView.clicks(registerInforBtnNext).throttleFirst(1, TimeUnit.MILLISECONDS)
+                .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(@NonNull Object o) throws Exception {
 
+                        System.out.println("o = " + o);
                         presenter.vaildInfor(phone, registerUsername.getText().toString().trim(), registerSex.getText().toString().trim()
                                 , registerAge.getText().toString().trim(), registerDiquValue.getText().toString().trim()
                                 , registerJieshaoValue.getText().toString().trim(), Md5Utils.getMD5(registerPassword.getText().toString().trim()));
@@ -251,8 +261,6 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
             activity.toIActivity(UploadPhotoActivity.class,null,0);
             AppManager.getAppManager().finishActivity(getActivity());
             AppManager.getAppManager().finishActivity(LoginActivity.class);
-
-
         }else {
             MyToast.makeText(IApplication.getApplication(),registerBean.getResult_message(), Toast.LENGTH_SHORT);
         }

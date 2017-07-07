@@ -17,19 +17,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.dliao.R;
+import com.bw.dliao.base.AppManager;
 import com.bw.dliao.base.IActivity;
+import com.bw.dliao.base.IApplication;
+import com.bw.dliao.bean.UploadPhotoBean;
+import com.bw.dliao.core.JNICore;
+import com.bw.dliao.core.SortUtils;
 import com.bw.dliao.network.BaseObserver;
 import com.bw.dliao.network.RetrofitManager;
 import com.bw.dliao.utils.Constants;
 import com.bw.dliao.utils.ImageResizeUtils;
 import com.bw.dliao.utils.SDCardUtils;
 import com.bw.dliao.widget.MyToast;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -321,19 +330,44 @@ public class UploadPhotoActivity extends IActivity {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
-        MultipartBody body = new MultipartBody.Builder().addFormDataPart("image",arr[arr.length-1],requestFile).build();
+        long ctimer = System.currentTimeMillis() ;
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("user.currenttimer",ctimer+"");
+        String sign =  JNICore.getSign(SortUtils.getMapResult(SortUtils.sortString(map))) ;
+        map.put("user.sign",sign);
 
-//        MultipartBody.Part part = MultipartBody.Part.createFormData("image", arr[arr.length-1], requestFile);
+
+        MultipartBody body = new MultipartBody.Builder()
+                .addFormDataPart("image",arr[arr.length-1],requestFile)
+                .build();
+
+//        key = value   addFormDataPart file 00101010110 key = value
+//        key = value
+//
+//         file 00101010110
+//        key = value
 
 
-        RetrofitManager.uploadPhoto( body, new BaseObserver() {
+        RetrofitManager.uploadPhoto( body,map, new BaseObserver() {
             @Override
             public void onSuccess(String result) {
-                System.out.println("result = " + result);
+
+                try {
+                    Gson gson = new Gson();
+                    UploadPhotoBean bean =  gson.fromJson(result, UploadPhotoBean.class);
+                    if(bean.getResult_code() == 200){
+                        MyToast.makeText(IApplication.getApplication(),"上传成功",Toast.LENGTH_SHORT);
+                    }
+                    AppManager.getAppManager().finishActivity(UploadPhotoActivity.class);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+
             }
 
             @Override
             public void onFailed(int code) {
+                MyToast.makeText(IApplication.getApplication(),""+code,Toast.LENGTH_SHORT);
 
             }
         });
