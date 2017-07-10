@@ -19,11 +19,15 @@ public class KeyBoardHelper {
     public KeyBoardHelper(Activity activity) {
         this.activity = activity;
         screenHeight = activity.getResources().getDisplayMetrics().heightPixels;
-        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        // 设置当前activity 输入法模式 为 resize
+//        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         if (activity.getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
+
+//      当前的activity 输入法模式 设置成  SOFT_INPUT_ADJUST_RESIZE
+//     当前 根view  注册 addOnGlobalLayoutListener  计算键盘的高度
 
     public void onCreate() {
         View content = activity.findViewById(android.R.id.content);
@@ -68,8 +72,9 @@ public class KeyBoardHelper {
 
     public interface OnKeyBoardStatusChangeListener {
 
+        //键盘弹起
         void OnKeyBoardPop(int keyBoardheight);
-
+//键盘关闭
         void OnKeyBoardClose(int oldKeyBoardheight);
     }
 }

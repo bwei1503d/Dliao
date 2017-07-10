@@ -82,6 +82,9 @@ public class UploadPhotoActivity extends IActivity {
 
 
 
+    private int width ;
+    private int height ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -258,6 +261,8 @@ public class UploadPhotoActivity extends IActivity {
 
                         }
                         Bitmap bitmap = ImageResizeUtils.resizeImage(f.getAbsolutePath(), Constants.RESIZE_PIC);
+                        width = bitmap.getWidth();
+                        height = bitmap.getHeight();
                         FileOutputStream fos = new FileOutputStream(f.getAbsolutePath());
                         if (bitmap != null) {
                             if (bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fos)) {
@@ -287,6 +292,8 @@ public class UploadPhotoActivity extends IActivity {
                     //file 就是拍照完 得到的原始照片
                     File file = new File(SDCardUtils.photoCacheDir, LocalPhotoName);
                     Bitmap bitmap = ImageResizeUtils.resizeImage(file.getAbsolutePath(), Constants.RESIZE_PIC);
+                    width = bitmap.getWidth();
+                    height = bitmap.getHeight();
                     FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
                     if (bitmap != null) {
                         if (bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fos)) {
@@ -333,6 +340,8 @@ public class UploadPhotoActivity extends IActivity {
         long ctimer = System.currentTimeMillis() ;
         Map<String,String> map = new HashMap<String,String>();
         map.put("user.currenttimer",ctimer+"");
+        map.put("user.picWidth",width+"");
+        map.put("user.picHeight",height+"");
         String sign =  JNICore.getSign(SortUtils.getMapResult(SortUtils.sortString(map))) ;
         map.put("user.sign",sign);
 

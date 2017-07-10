@@ -8,6 +8,7 @@ public class JNICore {
 
 
 
+    // 调用so 文件中的方法
     public static native String getSign(String sign);
 
 }

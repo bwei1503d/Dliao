@@ -28,6 +28,10 @@ import com.bw.dliao.widget.cityview.myinterface.SelectAddressInterface;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 
 //zmuhanxibaweiZ1
 public class SpalshActivity extends IActivity {
@@ -46,8 +50,6 @@ public class SpalshActivity extends IActivity {
         textView = (TextView) findViewById(R.id.textview);
 
 
-
-        System.loadLibrary("core");
 
 
 

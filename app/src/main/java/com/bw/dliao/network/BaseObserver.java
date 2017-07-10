@@ -28,7 +28,7 @@ public abstract  class BaseObserver implements Observer<String> {
     public void onNext(@NonNull String s) {
 
 
-        KLog.i(s);
+        KLog.e(s);
 
         onSuccess(s);
 

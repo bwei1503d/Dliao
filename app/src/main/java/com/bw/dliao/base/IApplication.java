@@ -1,10 +1,9 @@
 package com.bw.dliao.base;
 
-import android.app.Application;
-
+import com.bw.dliao.dao.DaoMaster;
+import com.bw.dliao.dao.DaoSession;
+import com.bw.dliao.utils.AMapUtils;
 import com.mob.MobApplication;
-import com.mob.MobSDK;
-import com.mob.commons.SMSSDK;
 
 
 /**
@@ -16,14 +15,17 @@ public class IApplication extends MobApplication {
 
     public static IApplication application ;
 
+    public static DaoSession daoSession ;
+
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
 
 
-
-
+        initJNI();
+        aMap();
+        initGreendao();
 
     }
 
@@ -38,6 +40,27 @@ public class IApplication extends MobApplication {
 
 
 
+    private void initJNI(){
+        System.loadLibrary("core");
+    }
+
+    public void aMap(){
+        AMapUtils.getInstance().startUtils(this);
+    }
+
+
+
+    public void initGreendao(){
+
+
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"dliao.db");
+        DaoMaster master = new DaoMaster(helper.getWritableDatabase());
+      //   加密
+//        DaoMaster master = new DaoMaster(helper.getEncryptedWritableDb("1111"));
+
+        daoSession = master.newSession() ;
+
+    }
 
 
 }

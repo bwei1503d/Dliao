@@ -70,6 +70,10 @@ public class RetrofitManager {
 
     public static void post(String url,Map<String,String> map, Observer<String> observer){
 
+//        SortUtils.sortString(map)  mao key 排序
+//        SortUtils.getMapResult(map)  map 拼接成字符串  返回值string
+//        JNICore.getSign(string)   md5(appkey=11111&string)
+//
         String sign =  JNICore.getSign(SortUtils.getMapResult(SortUtils.sortString(map))) ;
         map.put("user.sign",sign);
 
