@@ -151,6 +151,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
                     public void onSuccess(String result) {
                         System.out.println("result = " + result);
 
+
                         finish();
                     }
 

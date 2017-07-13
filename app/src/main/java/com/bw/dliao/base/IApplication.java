@@ -3,6 +3,8 @@ package com.bw.dliao.base;
 import com.bw.dliao.dao.DaoMaster;
 import com.bw.dliao.dao.DaoSession;
 import com.bw.dliao.utils.AMapUtils;
+import com.hyphenate.chat.EMOptions;
+import com.hyphenate.easeui.EaseUI;
 import com.mob.MobApplication;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -31,6 +33,12 @@ public class IApplication extends MobApplication {
         initGreendao();
 
         LeakCanary.install(this);
+
+        EMOptions options = new EMOptions();
+// 默认添加好友时，是不需要验证的，改成需要验证
+        options.setAcceptInvitationAlways(false);
+
+        EaseUI.getInstance().init(this, options);
 
 
     }

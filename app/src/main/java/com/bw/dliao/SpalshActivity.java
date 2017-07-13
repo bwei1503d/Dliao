@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bw.dliao.activitys.ChatActivity;
 import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.activitys.TabActivity;
 import com.bw.dliao.base.IActivity;
@@ -49,7 +50,7 @@ public class SpalshActivity extends IActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.textview:
-                toIActivity(LoginActivity.class, null, 0);
+                toIActivity(ChatActivity.class, null, 0);
                 break;
             case R.id.btn:
                 break;
