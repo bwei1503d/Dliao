@@ -1,41 +1,28 @@
 package com.bw.dliao;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.Scroller;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.activitys.TabActivity;
 import com.bw.dliao.base.IActivity;
-import com.bw.dliao.cipher.DesEncrypt;
-import com.bw.dliao.widget.cityview.SelectAddressDialog;
-import com.bw.dliao.widget.cityview.myinterface.SelectAddressInterface;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 //zmuhanxibaweiZ1
 public class SpalshActivity extends IActivity {
 
+    @BindView(R.id.textview)
+    TextView textview;
+    @BindView(R.id.btn)
+    Button btn;
     private Button button;
     private TextView textView;
 
@@ -43,25 +30,29 @@ public class SpalshActivity extends IActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spalsh);
+        ButterKnife.bind(this);
 
 
+        Toast.makeText(this, ""+ Build.CPU_ABI, Toast.LENGTH_SHORT).show();
         button = (Button) findViewById(R.id.btn);
 
         textView = (TextView) findViewById(R.id.textview);
 
 
-
-
-
-
-        toIActivity(TabActivity.class,null,0);
-
-
-
-
+        toIActivity(TabActivity.class, null, 0);
 
 
     }
 
 
+    @OnClick({R.id.textview, R.id.btn})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.textview:
+                toIActivity(LoginActivity.class, null, 0);
+                break;
+            case R.id.btn:
+                break;
+        }
+    }
 }

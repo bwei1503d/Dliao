@@ -115,7 +115,7 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentView, FirstFragm
         adapter = new IndexAdapter(getActivity());
         toLinearLayoutManager();
 
-        presenter.getData(page);
+        presenter.getData(System.currentTimeMillis());
 
 
         springviewIndexfragment.setHeader(new DefaultHeader(getActivity()));
@@ -126,13 +126,13 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentView, FirstFragm
             public void onRefresh() {
                 System.out.println("onRefresh = " );
                 page = 1 ;
-                presenter.getData(page);
+                presenter.getData(System.currentTimeMillis());
             }
 
             @Override
             public void onLoadmore() {
                 System.out.println("onLoadmore = " );
-                presenter.getData(++page);
+                presenter.getData(System.currentTimeMillis());
 
             }
         });
@@ -170,16 +170,16 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentView, FirstFragm
 
 
     @Override
-    public void success(IndexBean indexBean,int page) {
+    public void success(IndexBean indexBean,long page) {
 
 
 
-        adapter.setData(indexBean,page);
+        adapter.setData(indexBean,1);
 
     }
 
     @Override
-    public void failed(int code,int page) {
+    public void failed(int code,long page) {
 
     }
 }

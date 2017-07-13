@@ -4,6 +4,9 @@ import com.bw.dliao.dao.DaoMaster;
 import com.bw.dliao.dao.DaoSession;
 import com.bw.dliao.utils.AMapUtils;
 import com.mob.MobApplication;
+import com.squareup.leakcanary.LeakCanary;
+
+import okhttp3.OkHttpClient;
 
 
 /**
@@ -27,7 +30,11 @@ public class IApplication extends MobApplication {
         aMap();
         initGreendao();
 
+        LeakCanary.install(this);
+
+
     }
+
 
 
 
@@ -55,7 +62,7 @@ public class IApplication extends MobApplication {
 
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"dliao.db");
         DaoMaster master = new DaoMaster(helper.getWritableDatabase());
-      //   加密
+//         加密
 //        DaoMaster master = new DaoMaster(helper.getEncryptedWritableDb("1111"));
 
         daoSession = master.newSession() ;

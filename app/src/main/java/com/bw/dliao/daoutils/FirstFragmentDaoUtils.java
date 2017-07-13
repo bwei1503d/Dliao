@@ -32,6 +32,8 @@ public class FirstFragmentDaoUtils {
                 IApplication.daoSession.getDataBeanDao().insertInTx(list);
 
 
+
+
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

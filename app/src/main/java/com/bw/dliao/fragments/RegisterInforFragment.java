@@ -235,20 +235,19 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
 
 
 
-        RxView.clicks(registerInforBtnNext).throttleFirst(1, TimeUnit.MILLISECONDS)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(@NonNull Object o) throws Exception {
+//        RxView.clicks(registerInforBtnNext).throttleFirst(1, TimeUnit.MILLISECONDS)
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Object>() {
+//                    @Override
+//                    public void accept(@NonNull Object o) throws Exception {
+//
+//
+//                    }
+//                });
 
-                        System.out.println("o = " + o);
-                        presenter.vaildInfor(phone, registerUsername.getText().toString().trim(), registerSex.getText().toString().trim()
-                                , registerAge.getText().toString().trim(), registerDiquValue.getText().toString().trim()
-                                , registerJieshaoValue.getText().toString().trim(), Md5Utils.getMD5(registerPassword.getText().toString().trim()));
-                    }
-                });
-
-
+        presenter.vaildInfor(phone, registerUsername.getText().toString().trim(), registerSex.getText().toString().trim()
+                , registerAge.getText().toString().trim(), registerDiquValue.getText().toString().trim()
+                , registerJieshaoValue.getText().toString().trim(), Md5Utils.getMD5(registerPassword.getText().toString().trim()));
 
     }
 

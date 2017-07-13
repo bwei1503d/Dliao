@@ -10,8 +10,8 @@ public interface FirstFragmentView {
 
 
 
-    public void success(IndexBean indexBean,int page);
-    public void failed(int code,int page);
+    public void success(IndexBean indexBean,long currenttimer);
+    public void failed(int code,long currenttimer);
 
 
 }

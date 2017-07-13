@@ -89,9 +89,12 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
 
             }
         };
+
         // 注册回调监听接口
         SMSSDK.registerEventHandler(eventHandler);
         imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+
 
         return view;
     }
@@ -216,6 +219,9 @@ public class RegisterSms extends BaseMvpFragment<RegisterSmsView,RegisterSmsPres
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if(eventHandler != null){
+            SMSSDK.unregisterEventHandler(eventHandler);
+        }
         if(disposable != null){
             disposable.dispose();
         }

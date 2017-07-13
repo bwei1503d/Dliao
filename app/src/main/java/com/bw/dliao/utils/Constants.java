@@ -19,12 +19,12 @@ public class Constants {
 //    user.area   user.age , user.introduce ,user.sign , user.secretkey
 //  可选 user.lat , user.lng
 
-//    3 上传形象照
+//    3 上传形象照 必须登录
 //    http://qhb.2dyt.com/MyInterface/userAction_uploadImage.action
 //    必须
 //      user.file  user.currenttimer  user.sign user.picWidth , user.picHeight
 
-//    4 将照片上传到相册中去
+//    4 将照片上传到相册中去 必须登录
 //    http://qhb.2dyt.com/MyInterface/userAction_uploadPhotoAlbum.action
     //    必须
 //        user.file  user.currenttimer  user.sign , user.picWidth , user.picHeight
@@ -35,9 +35,19 @@ public class Constants {
 //   user.userId,user.sign
 //    6 获取用户列表
 //      http://qhb.2dyt.com/MyInterface/userAction_selectAllUser.action
-//    pageIndex  pageSize sign
+//     user.sign , user.currenttimer
 //
-
+//
+//    7 添加好友 必须登录
+//      http://qhb.2dyt.com/MyInterface/userAction_addFriends.action
+//     user.sign , relationship.friendId
+//    8  好友列表 必须登录
+//      http://qhb.2dyt.com/MyInterface/userAction_addFriends.action
+//     user.sign , user.currenttimer
+//
+//
+//
+//
 
     //
 

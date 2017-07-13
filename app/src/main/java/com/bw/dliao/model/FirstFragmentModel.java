@@ -9,14 +9,14 @@ import com.bw.dliao.bean.IndexBean;
 public interface FirstFragmentModel {
 
 
-    public void getData(int page,DataListener dataListener);
+    public void getData(long currenttimer,DataListener dataListener);
 
 
 
 
     public interface DataListener{
-        public void onSuccess(IndexBean indexBean,int page);
-        public void onFailed(int code,int page);
+        public void onSuccess(IndexBean indexBean,long currenttimer);
+        public void onFailed(int code,long currenttimer);
     }
 
 }

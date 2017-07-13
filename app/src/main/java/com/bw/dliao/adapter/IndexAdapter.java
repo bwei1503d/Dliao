@@ -1,6 +1,7 @@
 package com.bw.dliao.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -105,6 +106,11 @@ public class IndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             Glide.with(context).load(list.get(position).getImagePath()).error(R.drawable.face_error).into(verticalViewHolder.indexfragmentFace);
 
+
+
+
+
+
            String lat =  PreferencesUtils.getValueByKey(context, AMapUtils.LAT,"");
             String lng = PreferencesUtils.getValueByKey(context,AMapUtils.LNG,"");
 
@@ -138,13 +144,8 @@ public class IndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             params.width = itemWidth;
             params.height = (int)( (float)scale * (float)list.get(position).getPicHeight()) ;
 
-            System.out.println("params.scale = " + scale);
-            System.out.println("params.width = " + params.width + " " + list.get(position).getPicWidth());
-            System.out.println("params.height = " + params.height + "  " + list.get(position).getPicHeight());
 
             staggeredViewHolder.indexfragmentStagger.setLayoutParams(params);
-
-//            params.width = itemWidth
 
 
             Glide.with(context).load(list.get(position).getImagePath()).error(R.drawable.face_error).into(staggeredViewHolder.indexfragmentStagger);

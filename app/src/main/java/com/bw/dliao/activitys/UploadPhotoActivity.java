@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -127,7 +129,13 @@ public class UploadPhotoActivity extends IActivity {
     public void toCamera(){
         try {
             Intent intentNow = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intentNow.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(SDCardUtils.getMyFaceFile(createLocalPhotoName())));
+            Uri uri = null ;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {  //针对Android7.0，需要通过FileProvider封装过的路径，提供给外部调用
+                uri = FileProvider.getUriForFile(UploadPhotoActivity.this, "com.bw.dliao", SDCardUtils.getMyFaceFile(createLocalPhotoName()));//通过FileProvider创建一个content类型的Uri，进行封装
+            }else {
+                uri = Uri.fromFile(SDCardUtils.getMyFaceFile(createLocalPhotoName())) ;
+            }
+            intentNow.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             startActivityForResult(intentNow, INTENTFORCAMERA);
         } catch (Exception e) {
             e.printStackTrace();
