@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_bg_color"
+    tools:context="com.bw.dliao.fragments.RegisterInforFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical"         android:layout_margin="@dimen/height20"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_nickname"/>
+            <EditText
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_username"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_password"/>
+            <EditText
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_password"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/height20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_sex"/>
+            <TextView
+                android:gravity="right"
+                android:text="@string/register_man_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_sex"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/height20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_age"/>
+            <TextView
+                android:gravity="right"
+                android:text="@string/register_age_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_age"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/height20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_diqu"/>
+            <TextView
+                android:hint="@string/register_diqu_value"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_diqu_value"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/height20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_jieshao"/>
+            <TextView
+                android:hint="@string/register_jieshao_value"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_jieshao_value"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_marginRight="@dimen/height20"
+            android:layout_marginLeft="@dimen/height20"
+            android:text="@string/next_step"
+            android:textColor="@color/whitecolor"
+            android:background="@drawable/login_btn_selector"
+            android:layout_marginTop="@dimen/height20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/register_infor_btn_next"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_bg_color"
+    tools:context="com.bw.dliao.fragments.RegisterSms">
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/height40"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" android:orientation="vertical">
+
+            <EditText
+                android:maxLength="11"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:text="18511085102"
+                android:hint="@string/login_hint_phone"
+                style="@style/LoginEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_sms_edittext_phone"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal">
+                <EditText
+                    android:text="1111"
+                    android:maxLines="1"
+                    android:layout_marginTop="@dimen/height10"
+                    android:hint="请输入验证码"
+                    style="@style/LoginEditText"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/register_sms_edittext_password"/>
+
+                <Button
+                    android:id="@+id/register_sms_btn"
+                    android:textColor="@color/whitecolor"
+                    android:background="@drawable/login_btn_selector"
+                    android:layout_width="@dimen/height120"
+                    android:layout_height="@dimen/height40"
+                    android:text="@string/register_sms"/>
+
+            </LinearLayout>
+
+
+
+            <Button
+                android:text="@string/next_step"
+                android:textColor="@color/whitecolor"
+                android:background="@drawable/login_btn_selector"
+                android:layout_marginTop="@dimen/height20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_sms_btn_next"/>
+
+        </LinearLayout>
+
+
+
+
+</LinearLayout>
