@@ -1,16 +1,18 @@
 package com.bw.dliao.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.dliao.R;
 import com.bw.dliao.base.BaseMvpActivity;
 import com.bw.dliao.base.IApplication;
+import com.bw.dliao.bean.RegisterBean;
 import com.bw.dliao.cipher.Md5Utils;
 import com.bw.dliao.cipher.aes.JNCryptorUtils;
 import com.bw.dliao.cipher.rsa.RsaUtils;
@@ -20,17 +22,14 @@ import com.bw.dliao.presenter.LoginPresenter;
 import com.bw.dliao.utils.Constants;
 import com.bw.dliao.view.LoginView;
 import com.bw.dliao.widget.keyboard.KeyBoardHelper;
-import com.jakewharton.rxbinding2.view.RxView;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 
 public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> implements KeyBoardHelper.OnKeyBoardStatusChangeListener {
     @BindView(R.id.pub_title_leftbtn)
@@ -151,7 +150,19 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
                     public void onSuccess(String result) {
                         System.out.println("result = " + result);
 
-                        finish();
+                        Gson gson = new Gson();
+                        RegisterBean registerBean = gson.fromJson(result, RegisterBean.class);
+
+                        if (registerBean.getResult_code() == 200 && registerBean.getData()!=null){
+
+                            Toast.makeText(LoginActivity.this, "登陆成功，即将跳转",Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent(LoginActivity.this,TabActivity.class);
+                            startActivity(i);
+
+                            finish();
+
+                        }
                     }
 
                     @Override

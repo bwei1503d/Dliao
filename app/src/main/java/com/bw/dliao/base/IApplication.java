@@ -4,9 +4,6 @@ import com.bw.dliao.dao.DaoMaster;
 import com.bw.dliao.dao.DaoSession;
 import com.bw.dliao.utils.AMapUtils;
 import com.mob.MobApplication;
-import com.squareup.leakcanary.LeakCanary;
-
-import okhttp3.OkHttpClient;
 
 
 /**
@@ -30,11 +27,10 @@ public class IApplication extends MobApplication {
         aMap();
         initGreendao();
 
-        LeakCanary.install(this);
+//        LeakCanary.install(this);
 
 
     }
-
 
 
 
