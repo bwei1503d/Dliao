@@ -6,9 +6,6 @@ import com.bw.dliao.utils.AMapUtils;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
 import com.mob.MobApplication;
-import com.squareup.leakcanary.LeakCanary;
-
-import okhttp3.OkHttpClient;
 
 
 /**
@@ -32,7 +29,7 @@ public class IApplication extends MobApplication {
         aMap();
         initGreendao();
 
-        LeakCanary.install(this);
+//        LeakCanary.install(this);
 
         EMOptions options = new EMOptions();
 // 默认添加好友时，是不需要验证的，改成需要验证
@@ -42,7 +39,6 @@ public class IApplication extends MobApplication {
 
 
     }
-
 
 
 

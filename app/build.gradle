@@ -3,18 +3,21 @@ apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
 
-    signingConfigs {
-        MyConfig {
-            try {
-                storeFile file('/Users/muhanxi/Desktop/android.keystore')
-                storePassword '123456'
-                keyAlias 'android.keystore'
-                keyPassword '123456'
-            } catch (ex) {
-                throw new InvalidUserDataException(ex.toString())
-            }
-        }
-    }
+//    signingConfigs {
+//        MyConfig {
+//            try {
+//                storeFile file('/Users/muhanxi/Desktop/android.keystore')
+//                storePassword '123456'
+//                keyAlias 'android.keystore'
+//                keyPassword '123456'
+//            } catch (ex) {
+//                throw new InvalidUserDataException(ex.toString())
+//            }
+//        }
+//    }
+
+
+
 
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -32,11 +35,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.MyConfig
+//            signingConfig signingConfigs.MyConfig
         }
         debug {
             minifyEnabled false
-            signingConfig signingConfigs.MyConfig
+//            signingConfig signingConfigs.MyConfig
         }
     }
 
@@ -131,5 +134,14 @@ dependencies {
 
     compile 'org.greenrobot:greendao:3.2.2' // add library
     compile 'net.zetetic:android-database-sqlcipher:3.5.7@aar'
+
+    //photoview
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
 }
