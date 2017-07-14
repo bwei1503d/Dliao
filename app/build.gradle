@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
 
-    signingConfigs {
+    /*signingConfigs {
         MyConfig {
             try {
                 storeFile file('/Users/muhanxi/Desktop/android.keystore')
@@ -14,7 +14,7 @@ android {
                 throw new InvalidUserDataException(ex.toString())
             }
         }
-    }
+    }*/
 
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -32,11 +32,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.MyConfig
+//            signingConfig signingConfigs.MyConfig
         }
         debug {
             minifyEnabled false
-            signingConfig signingConfigs.MyConfig
+//            signingConfig signingConfigs.MyConfig
         }
     }
 
@@ -131,5 +131,8 @@ dependencies {
 
     compile 'org.greenrobot:greendao:3.2.2' // add library
     compile 'net.zetetic:android-database-sqlcipher:3.5.7@aar'
+
+//图片圆形
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 
 }

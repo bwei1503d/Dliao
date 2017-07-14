@@ -2,27 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="@dimen/height120"
-    android:background="@color/main_bg_color"
     >
 
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"     android:layout_margin="@dimen/height10"
          android:orientation="horizontal">
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:scaleType="centerCrop"
             android:id="@+id/indexfragment_face"
-            android:layout_width="@dimen/height120"
-            android:layout_height="@dimen/height120"
+            android:layout_width="@dimen/height80"
+            android:layout_height="@dimen/height80"
+            android:layout_marginLeft="@dimen/height20"
             android:src="@mipmap/ic_launcher"
             android:layout_marginRight="@dimen/height10"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/height30"
             android:orientation="vertical">
 
             <TextView
@@ -58,6 +63,7 @@
         </LinearLayout>
 
     </LinearLayout>
+</RelativeLayout>
 
 
 </LinearLayout>
