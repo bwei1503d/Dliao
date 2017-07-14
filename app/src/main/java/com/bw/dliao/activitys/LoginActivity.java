@@ -196,6 +196,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     @Override
     public void OnKeyBoardPop(int keyBoardheight) {
 
+        PreferencesUtils.addConfigInfo(this,"kh",keyBoardheight);
         System.out.println("keyBoardheight OnKeyBoardPop = " + keyBoardheight);
     }
 
