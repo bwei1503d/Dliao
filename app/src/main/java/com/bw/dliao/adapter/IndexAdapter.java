@@ -27,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by muhanxi on 17/7/8.
@@ -206,7 +207,7 @@ public class IndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         @BindView(R.id.indexfragment_des)
         TextView indexfragmentDes;
         @BindView(R.id.indexfragment_face)
-        ImageView indexfragmentFace;
+        CircleImageView indexfragmentFace;
 
         public VerticalViewHolder(View itemView) {
             super(itemView);
@@ -217,7 +218,7 @@ public class IndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     static class PinterestViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.indexfragment_stagger)
-        ImageView indexfragmentStagger;
+        CircleImageView indexfragmentStagger;
         public PinterestViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
