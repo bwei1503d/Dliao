@@ -34,7 +34,6 @@ public class SpalshActivity extends IActivity {
         ButterKnife.bind(this);
 
 
-        Toast.makeText(this, ""+ Build.CPU_ABI, Toast.LENGTH_SHORT).show();
         button = (Button) findViewById(R.id.btn);
 
         textView = (TextView) findViewById(R.id.textview);
@@ -53,6 +52,8 @@ public class SpalshActivity extends IActivity {
                 toIActivity(ChatActivity.class, null, 0);
                 break;
             case R.id.btn:
+                toIActivity(LoginActivity.class, null, 0);
+
                 break;
         }
     }

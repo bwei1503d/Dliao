@@ -42,7 +42,7 @@ public class Constants {
 //      http://qhb.2dyt.com/MyInterface/userAction_addFriends.action
 //     user.sign , relationship.friendId
 //    8  好友列表 必须登录
-//      http://qhb.2dyt.com/MyInterface/userAction_addFriends.action
+//      http://qhb.2dyt.com/MyInterface/userAction_selectAllUserAndFriend.action
 //     user.sign , user.currenttimer
 //
 //

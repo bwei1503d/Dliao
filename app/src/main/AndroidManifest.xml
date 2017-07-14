@@ -111,6 +111,8 @@
         <!-- amap -->
         <service android:name="com.amap.api.location.APSService"/>
 
+        <activity android:name=".activitys.ChatActivity" />
+
     </application>
 
 </manifest>

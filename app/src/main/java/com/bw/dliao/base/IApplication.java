@@ -1,11 +1,19 @@
 package com.bw.dliao.base;
 
+import android.widget.Toast;
+
+import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.dao.DaoMaster;
 import com.bw.dliao.dao.DaoSession;
 import com.bw.dliao.utils.AMapUtils;
+import com.bw.dliao.utils.PreferencesUtils;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
 import com.mob.MobApplication;
+
+import static com.bw.dliao.utils.PreferencesUtils.getValueByKey;
 
 
 /**
@@ -71,6 +79,31 @@ public class IApplication extends MobApplication {
 
         daoSession = master.newSession() ;
 
+    }
+
+
+    public void setLogin(){
+        String username =  PreferencesUtils.getValueByKey(this,"uid",0)+"";
+        String pass = PreferencesUtils.getValueByKey(this,"yxpassword","");
+
+
+
+        EMClient.getInstance().login(username,pass, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                System.out.println(" EMClient login = " );
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
     }
 
 
