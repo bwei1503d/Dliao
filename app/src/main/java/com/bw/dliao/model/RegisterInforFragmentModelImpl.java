@@ -2,7 +2,6 @@ package com.bw.dliao.model;
 
 import com.bw.dliao.base.IApplication;
 import com.bw.dliao.bean.RegisterBean;
-import com.bw.dliao.core.JNICore;
 import com.bw.dliao.core.SortUtils;
 import com.bw.dliao.network.BaseObserver;
 import com.bw.dliao.network.RetrofitManager;
@@ -13,16 +12,11 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.reactivex.Observer;
-
 /**
  * Created by muhanxi on 17/7/5.
  */
 
 public class RegisterInforFragmentModelImpl implements RegisterInforFragmentModel {
-
-
-
 
     public void getData(String phone,String nickname,String sex,String age,String area,String introduce,String password,final RegisterInforFragmentDataListener listener){
 
