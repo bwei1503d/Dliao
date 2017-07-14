@@ -1,8 +1,6 @@
 package com.bw.dliao.adapter;
 
 import android.content.Context;
-import android.net.Uri;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bw.dliao.R;
 import com.bw.dliao.bean.DataBean;
 import com.bw.dliao.bean.IndexBean;
+import com.bw.dliao.jiekou.OnItemClickListener;
 import com.bw.dliao.utils.AMapUtils;
 import com.bw.dliao.utils.DeviceUtils;
 import com.bw.dliao.utils.DisanceUtils;
@@ -30,12 +29,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.R.id.list;
-import static android.media.CamcorderProfile.get;
-import static com.amap.api.location.CoordinateConverter.calculateLineDistance;
-import static com.bw.dliao.utils.PreferencesUtils.getValueByKey;
-import static com.loc.cw.l;
-
 /**
  * Created by muhanxi on 17/7/8.
  */
@@ -46,6 +39,14 @@ public class IndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Context context;
     private int tag = 1; // 1 先行布局 2 瀑布流
     private int itemWidth ;
+    private String s;
+
+    private OnItemClickListener<DataBean> mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener<DataBean> listener) {
+        this.mOnItemClickListener = listener;
+    }
+
 
     public IndexAdapter(Context context) {
         this.context = context;
@@ -80,12 +81,36 @@ public class IndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         if (viewType == 0) {
             View view = LayoutInflater.from(context).inflate(R.layout.indexfragment_verticaladapter, parent, false);
-            VerticalViewHolder verticalViewHolder = new VerticalViewHolder(view);
+            final VerticalViewHolder verticalViewHolder = new VerticalViewHolder(view);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final int position = verticalViewHolder.getAdapterPosition();
+                    final DataBean image = list.get(position);
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(position, image, v,s);
+                    }
+                }
+            });
+
             return verticalViewHolder;
 
         } else {
             View view = LayoutInflater.from(context).inflate(R.layout.indexfragment_pinterest, parent, false);
-            PinterestViewHolder pinterestViewHolder = new PinterestViewHolder(view);
+            final PinterestViewHolder pinterestViewHolder = new PinterestViewHolder(view);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final int position = pinterestViewHolder.getAdapterPosition();
+                    final DataBean image = list.get(position);
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(position, image, v,s);
+                    }
+                }
+            });
+
             return pinterestViewHolder;
         }
 
@@ -129,7 +154,11 @@ public class IndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 //计算两点之间的距离
                float dis =  CoordinateConverter.calculateLineDistance(dPoint,oPoint);
 
-                verticalViewHolder.indexfragmentAgesex.setText(list.get(position).getAge() + "岁 , " + list.get(position).getGender() + " , " + DisanceUtils.standedDistance(dis));
+
+                s = DisanceUtils.standedDistance(dis);
+
+
+                verticalViewHolder.indexfragmentAgesex.setText(list.get(position).getAge() + "岁 , " + list.get(position).getGender() + " , " + s);
 
             } else {
 
