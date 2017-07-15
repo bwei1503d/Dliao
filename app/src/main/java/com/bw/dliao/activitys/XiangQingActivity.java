@@ -17,7 +17,9 @@ import com.bw.dliao.bean.UserInfoBean;
 import com.bw.dliao.photoview.PicShowDialog;
 import com.bw.dliao.presenter.XiangQiangPresenter;
 import com.bw.dliao.view.XiangQiangActivityView;
+import com.donkingliang.labels.LabelsView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,6 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class XiangQingActivity extends Activity implements XiangQiangActivityView,View.OnClickListener{
+
 
     @BindView(R.id.xiangqing_touxiang)
     ImageView xiangqingTouxiang;
@@ -36,28 +39,15 @@ public class XiangQingActivity extends Activity implements XiangQiangActivityVie
     TextView xiangqingName;
     @BindView(R.id.xiangqing_age)
     TextView xiangqingAge;
-    @BindView(R.id.xiangqing_guangzhu)
-    RadioButton xiangqingGuangzhu;
-    @BindView(R.id.xiangqing_weixinqq)
-    RadioButton xiangqingWeixinqq;
-    @BindView(R.id.xiangqing_zuijinshangxianshijian)
-    TextView xiangqingZuijinshangxianshijian;
-    @BindView(R.id.xiangqing_jiaoyoumudi)
-    TextView xiangqingJiaoyoumudi;
-    @BindView(R.id.xiangqing_lianaiguannian)
-    TextView xiangqingLianaiguannian;
-    @BindView(R.id.xiangqing_shoucijianmianxiwang)
-    TextView xiangqingShoucijianmianxiwang;
-    @BindView(R.id.xiangqing_QQ)
-    TextView xiangqingQQ;
-    @BindView(R.id.xiangqing_shouji)
-    TextView xiangqingShouji;
-    @BindView(R.id.xiangqing_weixin)
-    TextView xiangqingWeixin;
+
+
+
+
 
     @BindView(R.id.id_gallery)
     LinearLayout linearLayout;
-
+    @BindView(R.id.labels)
+    LabelsView labelsView;
     private LayoutInflater mInflater;
 
     private XiangQiangPresenter xiangQiangPresenter;
@@ -67,7 +57,7 @@ public class XiangQingActivity extends Activity implements XiangQiangActivityVie
     private int itemWidth ;
     private ImageView img;
     private List<UserInfoBean.DataBean.PhotolistBean> photolist;
-
+    ArrayList<String> label = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,9 +74,22 @@ public class XiangQingActivity extends Activity implements XiangQiangActivityVie
 
         mInflater = LayoutInflater.from(this);
 
+        initTag();
+
     }
 
-    @OnClick({R.id.xiangqing_zuoshangjiao, R.id.xiangqing_youshangjiao, R.id.xiangqing_guangzhu, R.id.xiangqing_weixinqq, R.id.xiangqing_QQ, R.id.xiangqing_shouji, R.id.xiangqing_weixin})
+    private void initTag() {
+
+        label.add("稳重");
+        label.add("养花");
+        label.add("冷静");
+        label.add("稳重");
+        label.add("热情");
+
+        labelsView.setLabels(label); //直接设置一个字符串数组就可以了。
+    }
+
+    @OnClick({R.id.xiangqing_zuoshangjiao, R.id.xiangqing_youshangjiao})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.xiangqing_zuoshangjiao:
@@ -97,23 +100,14 @@ public class XiangQingActivity extends Activity implements XiangQiangActivityVie
             case R.id.xiangqing_youshangjiao:
                 break;
 
-            case R.id.xiangqing_guangzhu:
-                break;
-            case R.id.xiangqing_weixinqq:
-                break;
-            case R.id.xiangqing_QQ:
-                break;
-            case R.id.xiangqing_shouji:
-                break;
-            case R.id.xiangqing_weixin:
-                break;
+
         }
     }
 
     @Override
     public void onRegisterSuccess(UserInfoBean userInfoBean) {
 
-       final UserInfoBean.DataBean data = userInfoBean.getData();
+        final UserInfoBean.DataBean data = userInfoBean.getData();
 
         System.out.println("3333"+data.getNickname());
 
@@ -127,22 +121,22 @@ public class XiangQingActivity extends Activity implements XiangQiangActivityVie
 
         if (photolist.size()!=0){
 
-        for (int i = 0; i < photolist.size() ; i++) {
+            for (int i = 0; i < photolist.size() ; i++) {
 
-            img = new ImageView(this);
+                img = new ImageView(this);
 
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(400,400);
-            params.setMargins(100,100,100,100);
-            img.setLayoutParams(params);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(400,400);
+                params.setMargins(100 ,100,100,100);
+                img.setLayoutParams(params);
 
-            Glide.with(XiangQingActivity.this).load(photolist.get(i).getImagePath()).error(R.mipmap.ic_launcher).into(img);
+                Glide.with(XiangQingActivity.this).load(photolist.get(i).getImagePath()).error(R.mipmap.ic_launcher).into(img);
 
-            linearLayout.addView(img);
+                linearLayout.addView(img);
 
 
-            img.setOnClickListener(this);
+                img.setOnClickListener(this);
 
-        }
+            }
 
 
 
