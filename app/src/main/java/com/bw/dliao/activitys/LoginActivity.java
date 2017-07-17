@@ -24,8 +24,6 @@ import com.bw.dliao.utils.PreferencesUtils;
 import com.bw.dliao.view.LoginView;
 import com.bw.dliao.widget.keyboard.KeyBoardHelper;
 import com.google.gson.Gson;
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -159,15 +157,22 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
                         if (registerBean.getResult_code() == 200 && registerBean.getData()!=null){
 
 
-                            IApplication.getApplication().setLogin();
+
+
 
                             PreferencesUtils.addConfigInfo(IApplication.getApplication(),"phone",registerBean.getData().getPhone());
                             PreferencesUtils.addConfigInfo(IApplication.getApplication(),"password",registerBean.getData().getPassword());
+                            //这两个字段 用来登录环信
                             PreferencesUtils.addConfigInfo(IApplication.getApplication(),"yxpassword",registerBean.getData().getYxpassword());
                             PreferencesUtils.addConfigInfo(IApplication.getApplication(),"uid",registerBean.getData().getUserId());
+
                             PreferencesUtils.addConfigInfo(IApplication.getApplication(),"nickname",registerBean.getData().getNickname());
 
                             Toast.makeText(LoginActivity.this, "登陆成功，即将跳转",Toast.LENGTH_SHORT).show();
+
+
+
+                            IApplication.getApplication().emLogin();
 
                             Intent i = new Intent(LoginActivity.this,TabActivity.class);
                             startActivity(i);

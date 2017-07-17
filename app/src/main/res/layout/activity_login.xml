@@ -28,6 +28,7 @@
             android:layout_height="0dp" android:orientation="vertical">
 
             <EditText
+                android:text="13111111119"
                 android:maxLength="11"
                 android:maxLines="1"
                 android:hint="@string/login_hint_phone"
@@ -38,6 +39,7 @@
 
 
             <EditText
+                android:text="123456"
                 android:maxLines="1"
                 android:layout_marginTop="@dimen/height10"
                 android:hint="@string/login_hint_password"

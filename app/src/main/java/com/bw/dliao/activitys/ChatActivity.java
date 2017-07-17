@@ -7,6 +7,8 @@ import com.bw.dliao.R;
 import com.bw.dliao.base.IActivity;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseChatFragment;
+import com.hyphenate.easeui.ui.EaseContactListFragment;
+import com.hyphenate.easeui.ui.EaseConversationListFragment;
 //import com.hyphenate.easeui.EaseConstant;
 //import com.hyphenate.easeui.ui.EaseChatFragment;
 

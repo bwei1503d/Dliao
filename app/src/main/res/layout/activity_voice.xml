@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bw.dliao.activitys.VoiceActivity">
+
+    <Button
+        android:text="语音"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/call_yuyin_btn"/>
+
+    <Button
+        android:text="视频"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/call_shipin_btn"/>
+
+
+    <Button
+        android:text="接听语音"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer_call_yuyin_btn"/>
+
+    <Button
+        android:text="接听视频"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer_call_shipin_btn"/>
+
+    <Button
+        android:text="拒绝接听语音"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reject_call_yuyin_btn"/>
+
+    <Button
+        android:text="挂断语音"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/end_call_yuyin_btn"/>
+
+
+
+</LinearLayout>

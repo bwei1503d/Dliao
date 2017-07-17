@@ -16,19 +16,23 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.bw.dliao.R;
+import com.bw.dliao.adapter.CChativityAdapter;
 import com.bw.dliao.utils.PreferencesUtils;
 import com.bw.dliao.widget.keyboard.KeyBoardHelper;
+import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMChatManager;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.R.attr.keyHeight;
 import static com.hyphenate.chat.EMMessage.createTxtSendMessage;
 import static com.xiaomi.push.service.y.m;
 
@@ -47,6 +51,9 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
     @BindView(R.id.buttom_layout_view)
     View buttomLayoutView;
 
+    List<EMMessage> list ;
+
+    CChativityAdapter adapter ;
 
     Handler handler = new Handler(){
 
@@ -55,7 +62,7 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
             super.handleMessage(msg);
             switch ( msg.what ){
                 case 1:
-//                    buttomLayoutView.setVisibility(View.VISIBLE);
+
                     break;
             }
         }
@@ -69,6 +76,11 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
         setContentView(R.layout.activity_cchativity);
         ButterKnife.bind(this);
 
+
+        list = new ArrayList<EMMessage>();
+
+        adapter = new CChativityAdapter(this,list);
+        chatListview.setAdapter(adapter);
 
         int keyHeight = PreferencesUtils.getValueByKey(this, "kh", 300);
 
@@ -170,8 +182,28 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
 
     public void setTextMessage(){
         EMMessage emMessage =  EMMessage.createTxtSendMessage("1","1");
-
         EMClient.getInstance().chatManager().sendMessage(emMessage);
+
+
+        emMessage.setMessageStatusCallback(new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                System.out.println("emMessage = onSuccess ");
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+        list.add(emMessage);
+        adapter.notifyDataSetChanged();
+
 
     }
 

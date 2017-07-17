@@ -1,5 +1,8 @@
 package com.bw.dliao.base;
 
+import android.app.ActivityManager;
+import android.content.pm.PackageManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.bw.dliao.activitys.LoginActivity;
@@ -14,8 +17,12 @@ import com.hyphenate.easeui.EaseUI;
 import com.mob.MobApplication;
 //import com.squareup.leakcanary.LeakCanary;
 
+import java.util.Iterator;
+import java.util.List;
+
 import okhttp3.OkHttpClient;
 
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 import static com.bw.dliao.utils.PreferencesUtils.getValueByKey;
 
 
@@ -42,11 +49,19 @@ public class IApplication extends MobApplication {
 
 //        LeakCanary.install(this);
 
-        EMOptions options = new EMOptions();
-// 默认添加好友时，是不需要验证的，改成需要验证
-        options.setAcceptInvitationAlways(false);
 
-        EaseUI.getInstance().init(this, options);
+        int pid = android.os.Process.myPid();
+        String processAppName = getAppName(pid);
+// 如果APP启用了远程的service，此application:onCreate会被调用2次
+// 为了防止环信SDK被初始化2次，加此判断会保证SDK被初始化1次
+// 默认的APP会在以包名为默认的process name下运行，如果查到的process name不是APP的process name就立即返回
+
+        if (processAppName == null ||!processAppName.equalsIgnoreCase(this.getPackageName())) {
+            Log.e(TAG, "enter the service process!");
+            // 则此application::onCreate 是被service 调用的，直接返回
+            return;
+        }
+        initEM();
 
 
     }
@@ -64,6 +79,7 @@ public class IApplication extends MobApplication {
 
     private void initJNI(){
         System.loadLibrary("core");
+        System.loadLibrary("speex");
     }
 
     public void aMap(){
@@ -85,28 +101,66 @@ public class IApplication extends MobApplication {
     }
 
 
-    public void setLogin(){
-        String username =  PreferencesUtils.getValueByKey(this,"uid",0)+"";
-        String pass = PreferencesUtils.getValueByKey(this,"yxpassword","");
+
+    public void initEM(){
+        EMOptions options = new EMOptions();
+// 默认添加好友时，是不需要验证的，改成需要验证
+        options.setAcceptInvitationAlways(false);
+
+//        options.setAutoLogin(false);
+//初始化
+//        EMClient.getInstance().init(this, options);
+        EaseUI.getInstance().init(this, options);
+
+//在做打包混淆时，关闭debug模式，避免消耗不必要的资源
+        EMClient.getInstance().setDebugMode(true);
+    }
 
 
+    private String getAppName(int pID) {
+        String processName = null;
+        ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+        List l = am.getRunningAppProcesses();
+        Iterator i = l.iterator();
+        PackageManager pm = this.getPackageManager();
+        while (i.hasNext()) {
+            ActivityManager.RunningAppProcessInfo info = (ActivityManager.RunningAppProcessInfo) (i.next());
+            try {
+                if (info.pid == pID) {
+                    processName = info.processName;
+                    return processName;
+                }
+            } catch (Exception e) {
+                // Log.d("Process", "Error>> :"+ e.toString());
+            }
+        }
+        return processName;
+    }
 
-        EMClient.getInstance().login(username,pass, new EMCallBack() {
+
+    public void emLogin(){
+        String username = PreferencesUtils.getValueByKey(this,"uid",0) + "" ;
+        String password = PreferencesUtils.getValueByKey(this,"yxpassword","0") ;
+
+        EMClient.getInstance().login(username, password, new EMCallBack() {
             @Override
             public void onSuccess() {
-                System.out.println(" EMClient login = " );
+                System.out.println("password = onSuccess" );
             }
 
             @Override
             public void onError(int i, String s) {
+                System.out.println("password onError = " + i + " s " + s);
 
             }
 
             @Override
             public void onProgress(int i, String s) {
+                System.out.println("password onProgress = " + i);
 
             }
         });
+
     }
 
 
