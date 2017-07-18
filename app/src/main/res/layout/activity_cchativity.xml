@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bw.dliao.activitys.CChativity">
+
+    <View
+        android:id="@+id/chat_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/top_bar_normal_bg"/>
+
+
+    <ListView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chat_listview"
+        />
+    
+    <LinearLayout
+        android:background="@color/color_line_border"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/chat_edittext"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="表情"
+                android:id="@+id/chat_btn_emoj"/>
+            <Button
+                android:id="@+id/chat_btn_sendtext"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="发送按钮"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/buttom_layout_view"
+            android:background="@color/btn_answer_normal">
+
+
+            <!-- 填充表情 -->
+           <android.support.v4.view.ViewPager
+               android:layout_width="match_parent"
+               android:layout_height="match_parent" />
+            <!-- 填充加号 -->
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <!--- 写表情的布局-->
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
