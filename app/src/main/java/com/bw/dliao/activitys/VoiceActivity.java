@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.bw.dliao.R;
 import com.hyphenate.chat.EMCallStateChangeListener;
@@ -28,6 +30,14 @@ public class VoiceActivity extends Activity {
     Button answerCallYuyinBtn;
     @BindView(R.id.answer_call_shipin_btn)
     Button answerCallShipinBtn;
+//    @BindView(R.id.other_sourface)
+//    SurfaceView otherSourface;
+//    @BindView(R.id.self_sourface)
+//    SurfaceView selfSourface;
+    @BindView(R.id.reject_call_yuyin_btn)
+    Button rejectCallYuyinBtn;
+    @BindView(R.id.end_call_yuyin_btn)
+    Button endCallYuyinBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +51,13 @@ public class VoiceActivity extends Activity {
 
     }
 
-    @OnClick({R.id.call_yuyin_btn, R.id.call_shipin_btn,R.id.answer_call_yuyin_btn, R.id.answer_call_shipin_btn
-    ,R.id.reject_call_yuyin_btn})
+    @OnClick({R.id.call_yuyin_btn, R.id.call_shipin_btn, R.id.answer_call_yuyin_btn, R.id.answer_call_shipin_btn
+            , R.id.reject_call_yuyin_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.call_yuyin_btn:
                 try {
-                    EMClient.getInstance().callManager().makeVoiceCall("66");
+                    EMClient.getInstance().callManager().makeVoiceCall("74");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -137,7 +147,6 @@ public class VoiceActivity extends Activity {
     }
 
 
-
     private class CallReceiver extends BroadcastReceiver {
 
         @Override
@@ -150,6 +159,8 @@ public class VoiceActivity extends Activity {
 
             System.out.println("context = " + context);
             System.out.println("intent = " + intent);
+
+            Toast.makeText(context, "CallReceiver", Toast.LENGTH_SHORT).show();
 
         }
     }

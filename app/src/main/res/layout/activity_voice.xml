@@ -7,6 +7,26 @@
     android:orientation="vertical"
     tools:context="com.bw.dliao.activitys.VoiceActivity">
 
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<SurfaceView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/other_sourface"/>-->
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<SurfaceView-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/self_sourface"/>-->
+        <!--</FrameLayout>-->
+
+    <!--</FrameLayout>-->
+
     <Button
         android:text="语音"
         android:layout_width="wrap_content"
