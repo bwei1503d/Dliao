@@ -4,27 +4,18 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.pm.PackageManager;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.dao.DaoMaster;
 import com.bw.dliao.dao.DaoSession;
 import com.bw.dliao.utils.AMapUtils;
-import com.bw.dliao.utils.PreferencesUtils;
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
-import com.hyphenate.easeui.EaseUI;
 import com.mob.MobApplication;
-//import com.squareup.leakcanary.LeakCanary;
 
 import java.util.Iterator;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
-import static com.bw.dliao.utils.PreferencesUtils.getValueByKey;
+
+//import com.squareup.leakcanary.LeakCanary;
 
 
 /**
@@ -62,7 +53,6 @@ public class IApplication extends MobApplication {
             // 则此application::onCreate 是被service 调用的，直接返回
             return;
         }
-        initEM();
 
 
     }
@@ -103,20 +93,6 @@ public class IApplication extends MobApplication {
 
 
 
-    public void initEM(){
-        EMOptions options = new EMOptions();
-// 默认添加好友时，是不需要验证的，改成需要验证
-        options.setAcceptInvitationAlways(false);
-
-//        options.setAutoLogin(false);
-//初始化
-//        EMClient.getInstance().init(this, options);
-        EaseUI.getInstance().init(this, options);
-
-//在做打包混淆时，关闭debug模式，避免消耗不必要的资源
-        EMClient.getInstance().setDebugMode(true);
-    }
-
 
     private String getAppName(int pID) {
         String processName = null;
@@ -139,30 +115,6 @@ public class IApplication extends MobApplication {
     }
 
 
-    public void emLogin(){
-        String username = PreferencesUtils.getValueByKey(this,"uid",0) + "" ;
-        String password = PreferencesUtils.getValueByKey(this,"yxpassword","0") ;
-
-        EMClient.getInstance().login(username, password, new EMCallBack() {
-            @Override
-            public void onSuccess() {
-                System.out.println("password = onSuccess" );
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                System.out.println("password onError = " + i + " s " + s);
-
-            }
-
-            @Override
-            public void onProgress(int i, String s) {
-                System.out.println("password onProgress = " + i);
-
-            }
-        });
-
-    }
 
 
 }

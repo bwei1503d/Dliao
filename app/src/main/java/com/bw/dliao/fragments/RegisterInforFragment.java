@@ -3,12 +3,9 @@ package com.bw.dliao.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,34 +17,21 @@ import android.widget.Toast;
 import com.bw.dliao.R;
 import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.activitys.RegisterActivity;
-import com.bw.dliao.activitys.TabActivity;
-import com.bw.dliao.activitys.UploadPhotoActivity;
 import com.bw.dliao.base.AppManager;
 import com.bw.dliao.base.BaseMvpFragment;
 import com.bw.dliao.base.IApplication;
 import com.bw.dliao.bean.RegisterBean;
 import com.bw.dliao.cipher.Md5Utils;
 import com.bw.dliao.presenter.RegisterInforFragmentPresenter;
-import com.bw.dliao.utils.DialogUtils;
 import com.bw.dliao.view.RegisterInforFragmentView;
 import com.bw.dliao.widget.MyToast;
 import com.bw.dliao.widget.cityview.SelectAddressDialog;
 import com.bw.dliao.widget.cityview.myinterface.SelectAddressInterface;
-import com.jakewharton.rxbinding2.view.RxView;
-import com.jakewharton.rxbinding2.widget.RxAdapterView;
-import com.jakewharton.rxbinding2.widget.RxTextView;
-import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
-
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -257,7 +241,6 @@ public class RegisterInforFragment extends BaseMvpFragment<RegisterInforFragment
         //跳到上传形象照页面
 
         if(registerBean.getResult_code() == 200){
-            activity.toIActivity(UploadPhotoActivity.class,null,0);
             AppManager.getAppManager().finishActivity(getActivity());
             AppManager.getAppManager().finishActivity(LoginActivity.class);
         }else {

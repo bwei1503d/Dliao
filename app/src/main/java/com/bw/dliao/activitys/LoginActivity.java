@@ -172,7 +172,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
 
 
 
-                            IApplication.getApplication().emLogin();
+
 
                             Intent i = new Intent(LoginActivity.this,TabActivity.class);
                             startActivity(i);

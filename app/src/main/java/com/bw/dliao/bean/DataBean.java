@@ -17,7 +17,7 @@ public class DataBean {
      * picHeight : 507
      * gender : 男
      * lng : 0
-     * introduce : hhaha
+     * ;  : hhaha
      * imagePath : http://dyt-pict.oss-cn-beijing.aliyuncs.com/dliao/default_man.jpg
      * userId : 23
      * yxpassword : U383lo04

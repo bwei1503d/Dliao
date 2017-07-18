@@ -104,14 +104,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
-        <activity android:name=".activitys.UploadPhotoActivity"/>
 
 
         <activity android:name=".activitys.XiangQingActivity"/>
         <!-- amap -->
         <service android:name="com.amap.api.location.APSService"/>
-
-        <activity android:name=".activitys.ChatActivity" />
 
     </application>
 
