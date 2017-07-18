@@ -18,7 +18,12 @@
 
     <color name="tab_normal_textcolor">#373737</color>
     <color name="tab_selected_textcolor">#71C3C8</color>
-
+    <color name="style">#4FB0BD</color>
+    <color name="writer">#ffff</color>
+    <color name="texthui">#BDC0C4</color>
+    <color name="texthuis">#dee1e6</color>
+    <color name="textshenhui">#999a9c</color>
+    <color name="tou">#f2f2f2</color>
 
     <color name="color_line_border">#C7C7C7</color>
     <color name="color_black">#000000</color>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/fragment_frist_title_ivs"
+                android:layout_width="100dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="30dp"
+                android:padding="10dp"
+                android:scaleType="centerCrop" />
+
+
+            <LinearLayout
+                android:id="@+id/frist_adapter_lined"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/fragment_frist_title_named"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="您好"
+                    android:textSize="18dp" />
+
+
+                <TextView
+                    android:id="@+id/fragment_frist_title_sex_inford"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="您好"
+                    android:textColor="@color/texthui"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/texthui" />
+    </LinearLayout>
+</RelativeLayout>
