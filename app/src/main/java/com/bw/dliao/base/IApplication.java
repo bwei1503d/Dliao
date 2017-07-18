@@ -13,6 +13,7 @@ import com.bw.dliao.utils.AMapUtils;
 import com.bw.dliao.utils.PreferencesUtils;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
 import com.mob.MobApplication;
@@ -20,6 +21,7 @@ import com.mob.MobApplication;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.OkHttpClient;
 
@@ -147,6 +149,19 @@ public class IApplication extends MobApplication {
             @Override
             public void onSuccess() {
                 System.out.println("password = onSuccess" );
+
+
+
+                try{
+                    Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
+
+                    for (int i=0;i<conversations.size();i++){
+                        System.out.println("list = " + conversations.get(i));
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
             }
 
             @Override

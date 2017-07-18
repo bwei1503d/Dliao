@@ -7,10 +7,7 @@
     android:orientation="vertical"
     tools:context="com.bw.dliao.activitys.ChatActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/chat_contaner"/>
+
 
 
 

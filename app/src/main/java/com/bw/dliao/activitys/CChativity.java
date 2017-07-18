@@ -23,10 +23,12 @@ import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMChatManager;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -103,6 +105,16 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
 
 
         receive();
+
+
+       EMConversation conversation =  EMClient.getInstance().chatManager().getConversation("1");
+       List<EMMessage>  list =  conversation.getAllMessages() ;
+        for (int i=0;i<list.size();i++){
+            System.out.println("i == " + list.get(i).getMsgId() + list.get(i).getFrom() + " " + list.get(i).getTo() + "   " + list.get(i).getBody().toString());
+        }
+
+
+
     }
 
     @Override
@@ -120,11 +132,13 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
     }
 
 
+    //设置输入法模式 pan
     public  void setKeyBoardModelPan() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
                 | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
+    //设置输入法模式 resize
     public  void setKeyBoardModelResize() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
                 | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -132,12 +146,12 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
 
 
     //隐藏键盘
-
     public void hidenKeyBoard(EditText editText) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
+    // 显示键盘
     public void showKeyBoard(EditText editText){
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(editText,InputMethodManager.SHOW_FORCED);
@@ -162,6 +176,7 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
 
 
                 } else {
+
                     chatBtnEmoj.setTag(1);
                     //  显示键盘
                     showKeyBoard(chatEdittext);
@@ -181,13 +196,28 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
 
 
     public void setTextMessage(){
-        EMMessage emMessage =  EMMessage.createTxtSendMessage("1","1");
+        int nextInt =  new Random().nextInt(100) ;
+        final EMMessage emMessage =  EMMessage.createTxtSendMessage(nextInt+"", "1");
         EMClient.getInstance().chatManager().sendMessage(emMessage);
+
+
+        System.out.println("emMessage getMsgId= " + emMessage.getMsgId());
+
+
+
+        EMConversation conversation = EMClient.getInstance().chatManager().getConversation("1");
+        List<EMMessage> messages = conversation.getAllMessages();
+
+
+
+        EMClient.getInstance().chatManager().getConversation("1").insertMessage(emMessage);
 
 
         emMessage.setMessageStatusCallback(new EMCallBack() {
             @Override
             public void onSuccess() {
+                System.out.println("emMessage getMsgId= " + emMessage.getMsgId());
+
                 System.out.println("emMessage = onSuccess ");
             }
 
