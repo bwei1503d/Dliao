@@ -50,7 +50,7 @@ public class RegisterInforFragmentModelImpl implements RegisterInforFragmentMode
                     PreferencesUtils.addConfigInfo(IApplication.getApplication(),"uid",registerBean.getData().getUserId());
                     PreferencesUtils.addConfigInfo(IApplication.getApplication(),"nickname",registerBean.getData().getNickname());
 
-                    IApplication.getApplication().emLogin();
+
                 }
                 listener.onSuccess(registerBean);
 

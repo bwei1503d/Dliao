@@ -125,8 +125,7 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentView, FirstFragm
         toLinearLayoutManager();
 
         presenter.getData(System.currentTimeMillis());
-
-
+        springviewIndexfragment.setType(SpringView.Type.FOLLOW);
         springviewIndexfragment.setHeader(new DefaultHeader(getActivity()));
         springviewIndexfragment.setFooter(new DefaultFooter(getActivity()));
 
@@ -211,11 +210,11 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentView, FirstFragm
 
         int userId = list.get(position).getUserId();
 
-
         i.putExtra("user_id",userId+"");
 
         i.putExtra("location",s);
 
+        System.out.println("2222222222222222222"+s);
 
 
         startActivity(i);
