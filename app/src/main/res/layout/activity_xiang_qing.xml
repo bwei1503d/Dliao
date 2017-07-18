@@ -1,803 +1,770 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:scrollbars="none"
-    android:fillViewport="false">
+    android:fillViewport="false"
+    android:scrollbars="none">
 
-
-    <RelativeLayout
-        android:id="@+id/xiangqing_relativeLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
-
-
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/xiangqing_relativeLayout"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_height="match_parent">
 
 
-            <RelativeLayout
-                android:id="@+id/activity_xiang_qing"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:scaleType="centerCrop"
-                    android:id="@+id/xiangqing_touxiang"
-                    android:src="@mipmap/ic_launcher"
+
+                <RelativeLayout
+                    android:id="@+id/activity_xiang_qing"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="match_parent">
 
-                <!--@drawable/btn_back-->
-
-                <ImageView
-                    android:layout_marginTop="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:src="@drawable/back_pic"
-                    android:id="@+id/xiangqing_zuoshangjiao"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-
-                <ImageView
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/you"
-                    android:id="@+id/xiangqing_youshangjiao"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-
-                <TextView
-                    android:id="@+id/xiangqing_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffff00"
-                    android:layout_marginBottom="60dp"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="30dp"
-                    android:text="ffffff"
-                    android:layout_alignBottom="@id/xiangqing_touxiang"
-                    />
-
-                <TextView
-                    android:id="@+id/xiangqing_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffff00"
-                    android:layout_marginBottom="30dp"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="30dp"
-                    android:text="ffffff"
-                    android:layout_alignBottom="@id/xiangqing_touxiang"
-                    />
-
-
-
-            </RelativeLayout>
-
-            <HorizontalScrollView
-                android:scrollbars="none"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <LinearLayout
-                    android:id="@+id/id_gallery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal" >
                     <ImageView
-                        android:padding="5dp"
-                        android:layout_width="100dp"
+                        android:id="@+id/xiangqing_touxiang"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <!--@drawable/btn_back-->
+
+                    <ImageView
+                        android:id="@+id/xiangqing_zuoshangjiao"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/back_pic" />
+
+                    <ImageView
+                        android:id="@+id/xiangqing_youshangjiao"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/you" />
+
+                    <TextView
+                        android:id="@+id/xiangqing_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/xiangqing_touxiang"
+                        android:layout_marginBottom="60dp"
+                        android:layout_marginLeft="30dp"
+                        android:text="ffffff"
+                        android:textColor="#ffff00"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/xiangqing_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/xiangqing_touxiang"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:text="ffffff"
+                        android:textColor="#ffff00"
+                        android:textSize="15sp" />
+
+
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/id_gallery"
+                        android:layout_width="wrap_content"
                         android:layout_height="100dp"
-                        android:src="@drawable/personage_photo_list_select_press"
-                        />
-                </LinearLayout>
-            </HorizontalScrollView>
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:padding="5dp"
+                            android:src="@drawable/personage_photo_list_select_press" />
+                    </LinearLayout>
+                </HorizontalScrollView>
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F2F2F2"
-                ></View>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:background="#ffffff"
-                android:gravity="center_horizontal"
-                android:padding="2dp"
-                android:text="她与你的匹配度为97%"
-                android:textColor="#F08791"
-                android:textSize="15sp" />
-            <View
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F2F2F2"
-                ></View>
-
-
-            <LinearLayout
-                android:background="#fff"
-                android:padding="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <TextView
-
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ta的资料"
-                    android:textSize="15dp"
-                    />
                 <View
-                    android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
+                    android:background="#F2F2F2"></View>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="基本资料"
-                    android:background="#F2F2F2"
-                    android:textSize="15dp"
-                    />
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="昵称"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/find_child_more_name"
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="年龄"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
+                    android:layout_marginTop="2dp"
+                    android:background="#ffffff"
+                    android:gravity="center_horizontal"
+                    android:padding="2dp"
+                    android:text="她与你的匹配度为97%"
+                    android:textColor="#F08791"
+                    android:textSize="15sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
+                    android:layout_marginBottom="10dp"
+                    android:background="#F2F2F2"></View>
+
 
                 <LinearLayout
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="星座"
-                        android:textSize="15dp"
-                        />
+                    android:background="#fff"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                     <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
+
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
+                        android:layout_marginBottom="10dp"
+                        android:text="Ta的资料"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#F2F2F2"></View>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F2F2F2"
+                        android:text="基本资料"
+                        android:textSize="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="昵称"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/find_child_more_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="年龄"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="星座"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="居住地"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/find_child_more_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="身高"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="体重"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="血型"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
+
                 <LinearLayout
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="居住地"
-                        android:textSize="15dp"
-                        />
+                    android:background="#fff"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/find_child_more_area"
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
+                        android:background="#F2F2F2"
+                        android:text="详细资料"
+
                         />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="籍贯"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="职业"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="学历"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="收入"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="魅力部位"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="婚姻状况"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="住房状况"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="接收异地恋"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="喜欢的异性"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="接收亲密行为"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="和父母同住"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F2F2F2"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="是否要小孩"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="保密"
+                            android:textColor="#3CAEB2"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
                 <LinearLayout
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="身高"
-                        android:textSize="15dp"
-                        />
+                    android:background="#fff"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                     <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
+                        android:layout_marginBottom="10dp"
+                        android:text="Ta的标签"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#F2F2F2"></View>
+
+                    <com.donkingliang.labels.LabelsView
+                        android:id="@+id/labels"
+                        android:layout_width="368dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:labelBackground="@drawable/label_bg"
+                        app:labelTextColor="@drawable/label_text_color"
+                        app:labelTextPaddingBottom="5dp"
+                        app:labelTextPaddingLeft="10dp"
+                        app:labelTextPaddingRight="10dp"
+                        app:labelTextPaddingTop="5dp"
+                        app:labelTextSize="14sp"
+                        app:lineMargin="10dp"
+                        app:maxSelect="4"
+                        app:selectType="SINGLE"
+                        app:wordMargin="10dp"
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="0dp" />
 
                 </LinearLayout>
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="体重"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="血型"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
 
             </LinearLayout>
 
 
+        </RelativeLayout>
 
-            <LinearLayout
-                android:background="#fff"
-                android:padding="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="详细资料"
-                    android:background="#F2F2F2"
+    </ScrollView>
 
-                    />
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="籍贯"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="职业"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="学历"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="收入"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="魅力部位"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="婚姻状况"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="住房状况"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="接收异地恋"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="喜欢的异性"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="接收亲密行为"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="和父母同住"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="是否要小孩"
-                        android:textSize="15dp"
-                        />
-
-                    <TextView
-                        android:layout_gravity="center_vertical"
-                        android:textColor="#3CAEB2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="保密"
-                        android:textSize="15dp"
-                        />
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:padding="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#fff"
-                >
-
-                <TextView
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ta的标签"
-                    android:textSize="15dp"
-                    />
-                <View
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#F2F2F2"
-                    ></View>
-                <com.donkingliang.labels.LabelsView
-                    android:padding="10dp"
-                    android:id="@+id/labels"
-                    android:layout_width="368dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteY="0dp"
-                    tools:layout_editor_absoluteX="8dp"
-                    app:labelBackground="@drawable/label_bg"
-                    app:labelTextColor="@drawable/label_text_color"
-                    app:labelTextSize="14sp"
-                    app:labelTextPaddingBottom="5dp"
-                    app:labelTextPaddingLeft="10dp"
-                    app:labelTextPaddingRight="10dp"
-                    app:labelTextPaddingTop="5dp"
-                    app:lineMargin="10dp"
-                    app:wordMargin="10dp"
-                    app:selectType="SINGLE"
-                    app:maxSelect="4" />
-
-            </LinearLayout>
-
-
-
-
-        </LinearLayout>
-
-
-
+    <Button
+android:id="@+id/fridentactivity_button"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@color/style"
+android:text="加为好友"
+android:textColor="@color/writer"
+android:layout_alignParentBottom="true"
+android:layout_alignParentLeft="true"
+android:layout_alignParentStart="true" />
     </RelativeLayout>
-
-</ScrollView>
