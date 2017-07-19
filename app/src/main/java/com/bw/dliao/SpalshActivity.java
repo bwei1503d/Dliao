@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.bw.dliao.activitys.CChativity;
 import com.bw.dliao.activitys.ChatActivity;
 import com.bw.dliao.activitys.LoginActivity;
+import com.bw.dliao.activitys.SystemChatActivity;
 import com.bw.dliao.activitys.TabActivity;
 import com.bw.dliao.activitys.VoiceActivity;
 import com.bw.dliao.base.IActivity;

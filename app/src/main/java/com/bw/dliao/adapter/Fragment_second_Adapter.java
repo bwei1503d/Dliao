@@ -59,12 +59,13 @@ public class Fragment_second_Adapter extends RecyclerView.Adapter<RecyclerView.V
 
         Glide.with(context).load(list.get(position).getImagePath()).error(R.drawable.face_error).into(vholder.iv);
 
-        vholder.tilte.setText( list.get(position).getNickname());
+        vholder.tilte.setText( list.get(position).getNickname() + " " +  list.get(position).getPhone());
         vholder.infor.setText("签名：" + list.get(position).getIntroduce());
         vholder.lin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClickListener(position, v);
+
+                listener.onItemClickListener(position, v,list.get(position).getUserId());
             }
         });
         //系统的点击事件
@@ -72,7 +73,7 @@ public class Fragment_second_Adapter extends RecyclerView.Adapter<RecyclerView.V
             @Override
             public void onClick(View v) {
                 //当点击时：调用接口的方法
-                listener.onItemClickListener(position, v);
+                listener.onItemClickListener(position, v,list.get(position).getUserId());
             }
         });
 
@@ -106,7 +107,7 @@ public class Fragment_second_Adapter extends RecyclerView.Adapter<RecyclerView.V
 
     //自建里点击事件
     public interface OnItemClickListener {
-        void onItemClickListener(int position, View view);
+        void onItemClickListener(int position, View view,int userid);
 
         void onItemLongClickListener(int position, View view);
     }

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.bw.dliao.R;
+import com.bw.dliao.base.IApplication;
 import com.hyphenate.chat.EMCallStateChangeListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.EMNoActiveCallException;
@@ -39,11 +40,16 @@ public class VoiceActivity extends Activity {
     @BindView(R.id.end_call_yuyin_btn)
     Button endCallYuyinBtn;
 
+
+    String uid ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
         ButterKnife.bind(this);
+
+        uid = getIntent().getExtras().getInt("uid")+"";
 
 
         incoming();
@@ -54,18 +60,21 @@ public class VoiceActivity extends Activity {
     @OnClick({R.id.call_yuyin_btn, R.id.call_shipin_btn, R.id.answer_call_yuyin_btn, R.id.answer_call_shipin_btn
             , R.id.reject_call_yuyin_btn})
     public void onClick(View view) {
+        Toast.makeText(this, ""+EMClient.getInstance().isConnected(), Toast.LENGTH_SHORT).show();
+        if(!EMClient.getInstance().isConnected()){
+            IApplication.getApplication().emLogin();
+            return;
+        }
         switch (view.getId()) {
             case R.id.call_yuyin_btn:
-                try {
-                    EMClient.getInstance().callManager().makeVoiceCall("74");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                TelActivity.startTelActivity(1,uid,this);
+
                 break;
             case R.id.call_shipin_btn:
 
                 try {
-                    EMClient.getInstance().callManager().makeVideoCall("1");
+                    EMClient.getInstance().callManager().makeVideoCall(uid);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -2,6 +2,9 @@ package com.bw.dliao.activitys;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +17,7 @@ import android.widget.ListView;
 import com.bw.dliao.R;
 import com.bw.dliao.base.IActivity;
 import com.bw.dliao.utils.PreferencesUtils;
+import com.bw.dliao.widget.EditTextPreIme;
 import com.bw.dliao.widget.keyboard.KeyBoardHelper;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
@@ -32,14 +36,14 @@ import static com.hyphenate.easeui.EaseConstant.CHATTYPE_GROUP;
 //import com.hyphenate.easeui.EaseConstant;
 //import com.hyphenate.easeui.ui.EaseChatFragment;
 
-public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoardStatusChangeListener {
+public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoardStatusChangeListener , EditTextPreIme.EditTextListener {
 
     @BindView(R.id.chat_title)
     View chatTitle;
     @BindView(R.id.chat_listview)
     ListView chatListview;
     @BindView(R.id.chat_edittext)
-    EditText chatEdittext;
+    EditTextPreIme chatEdittext;
 
     // chatBtnEmoj 表情btn
     @BindView(R.id.chat_btn_emoj)
@@ -51,6 +55,9 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
     LinearLayout buttomLayoutView;
     //键盘的高度
     private int keyHeight;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +81,7 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
 
         System.out.println("keyHeight = " + keyHeight);
 
-
+        chatEdittext.setListener(this);
         chatEdittext.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -84,6 +91,7 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
                 } else {
                     setKeyBoardModelResize();
                 }
+                chatEdittext.setListener(ChatActivity.this);
                 return false;
             }
         });
@@ -157,6 +165,8 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
         switch (view.getId()) {
             case R.id.chat_btn_emoj:
 
+                chatEdittext.setListener(null);
+
                 setKeyBoardModelPan();
 
 
@@ -172,8 +182,7 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
                 } else {
                     //键盘
                     chatBtnEmoj.setTag(1);
-
-                    hidenKeyBoard();
+                    change();
 
                 }
 
@@ -191,6 +200,7 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
 
     //发送消息
     public void sendTextMessage(){
+
 
 
 //        EMClient.getInstance().isConnected()  true 表示自己和服务器是链接状态  false 表示自己是断开状态
@@ -240,6 +250,11 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
     }
 
 
+    public void change(){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
 
 
     public void receiveMessage(){
@@ -284,4 +299,42 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
     }
 
 
+    @Override
+    public void onBack() {
+        chatEdittext.setListener(null);
+
+        System.out.println("chatTitle = onBack" );
+
+
+
+        setKeyBoardModelResize();
+        buttomLayoutView.setVisibility(View.GONE);
+        chatBtnEmoj.setTag(1);
+
+
+
+    }
+
+
+
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK ){
+            System.out.println("chatTitle = onBack KEYCODE_BACK" );
+            if(buttomLayoutView.getVisibility() == View.VISIBLE){
+                buttomLayoutView.setVisibility(View.GONE);
+                chatBtnEmoj.setTag(1);
+
+                return  false;
+            }else {
+                return super.onKeyDown(keyCode, event);
+            }
+
+        } else{
+            return super.onKeyDown(keyCode, event);
+        }
+    }
 }

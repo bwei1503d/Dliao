@@ -1,9 +1,14 @@
 package com.bw.dliao.activitys;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 
 import com.bw.dliao.R;
@@ -13,6 +18,8 @@ import com.bw.dliao.fragments.FourthFragment;
 import com.bw.dliao.fragments.SecondFragment;
 import com.bw.dliao.fragments.ThirdFragment;
 import com.bw.dliao.widget.ButtomLayout;
+import com.hyphenate.chat.EMCallStateChangeListener;
+import com.hyphenate.chat.EMClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +35,7 @@ public class TabActivity extends IActivity implements ButtomLayout.OnSelectListe
     private FragmentManager fragmentManager;
 
     private List<Fragment> fragments = new ArrayList<Fragment>();
+    private CallReceiver callReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,10 @@ public class TabActivity extends IActivity implements ButtomLayout.OnSelectListe
 
         switchFragment(0);
 
+
+
+        //监听来电
+        incoming();
 
     }
 
@@ -96,5 +108,36 @@ public class TabActivity extends IActivity implements ButtomLayout.OnSelectListe
     @Override
     public void onSelect(int index) {
         switchFragment(index);
+    }
+
+
+    public void incoming() {
+        callReceiver = new CallReceiver();
+        IntentFilter callFilter = new IntentFilter(EMClient.getInstance().callManager().getIncomingCallBroadcastAction());
+        registerReceiver(callReceiver, callFilter);
+    }
+
+
+    private class CallReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // 拨打方username
+            String from = intent.getStringExtra("from");
+            // call type
+            String type = intent.getStringExtra("type");
+            //跳转到通话页面
+
+            TelActivity.startTelActivity(2,from,TabActivity.this);
+
+
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(callReceiver);
     }
 }

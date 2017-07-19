@@ -2,7 +2,10 @@ package com.bw.dliao.base;
 
 import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -46,6 +49,7 @@ public class IApplication extends MobApplication {
         application = this;
 
 
+
         initJNI();
         aMap();
         initGreendao();
@@ -70,6 +74,11 @@ public class IApplication extends MobApplication {
     }
 
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     public static IApplication getApplication(){
         if(application == null){

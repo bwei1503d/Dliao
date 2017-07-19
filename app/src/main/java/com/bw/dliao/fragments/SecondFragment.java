@@ -2,6 +2,7 @@ package com.bw.dliao.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.dliao.R;
+import com.bw.dliao.activitys.ChatActivity;
+import com.bw.dliao.activitys.VoiceActivity;
 import com.bw.dliao.adapter.Fragment_second_Adapter;
 import com.bw.dliao.base.IApplication;
 import com.bw.dliao.bean.DataBean1;
@@ -91,9 +94,12 @@ public class SecondFragment extends Fragment {
         fragmentFristRecyviews.setAdapter(adapter);
         adapter.setOnItemClickListener(new Fragment_second_Adapter.OnItemClickListener() {
             @Override
-            public void onItemClickListener(int position, View view) {
+            public void onItemClickListener(int position, View view,int uid) {
 
 
+                Intent intent =  new Intent(getActivity(), ChatActivity.class) ;
+                intent.putExtra("uid",uid);
+                startActivity(intent);
 
 
 
