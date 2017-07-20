@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.dliao.R;
+import com.bw.dliao.base.IApplication;
 import com.hyphenate.chat.EMCallStateChangeListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.EMNoActiveCallException;
@@ -65,6 +66,8 @@ public class TelActivity extends Activity {
 
         uid = getIntent().getExtras().getString("uid");
 
+//        telActivityAccept 1 接听电话
+        telActivityAccept.setTag(1);
 
         if (type == 1) {
             //拨打电话
@@ -76,7 +79,7 @@ public class TelActivity extends Activity {
 
                 EMClient.getInstance().callManager().makeVoiceCall(uid);
 
-                addListener();
+                IApplication.callTo();
 
             } catch (EMServiceNotReadyException e) {
                 e.printStackTrace();
@@ -90,6 +93,7 @@ public class TelActivity extends Activity {
 
         }
 
+        addListener();
 
     }
 
@@ -170,7 +174,22 @@ public class TelActivity extends Activity {
         switch (view.getId()) {
             case R.id.tel_activity_accept:
                 try {
-                    EMClient.getInstance().callManager().answerCall();
+//                    接听电话
+
+                    int tag = (Integer) telActivityAccept.getTag() ;
+                    if(tag == 1){
+                        telActivityAccept.setText("挂断");
+                        telActivityAccept.setTag(2);
+                        telActivityDisaccept.setVisibility(View.GONE);
+                        EMClient.getInstance().callManager().answerCall();
+                    }else {
+
+                        EMClient.getInstance().callManager().endCall();
+
+                        finish();
+
+                    }
+
                 } catch (EMNoActiveCallException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

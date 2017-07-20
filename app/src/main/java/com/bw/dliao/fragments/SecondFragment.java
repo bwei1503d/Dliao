@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bw.dliao.R;
 import com.bw.dliao.activitys.ChatActivity;
+import com.bw.dliao.activitys.SystemChatActivity;
 import com.bw.dliao.activitys.VoiceActivity;
 import com.bw.dliao.adapter.Fragment_second_Adapter;
 import com.bw.dliao.base.IApplication;
@@ -97,7 +98,7 @@ public class SecondFragment extends Fragment {
             public void onItemClickListener(int position, View view,int uid) {
 
 
-                Intent intent =  new Intent(getActivity(), ChatActivity.class) ;
+                Intent intent =  new Intent(getActivity(), VoiceActivity.class) ;
                 intent.putExtra("uid",uid);
                 startActivity(intent);
 

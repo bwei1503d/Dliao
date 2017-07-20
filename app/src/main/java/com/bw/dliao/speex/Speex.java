@@ -17,7 +17,6 @@ class Speex  {
 	}
 
 	public void init() {
-//		load();
 		open(DEFAULT_COMPRESSION);
 	}
 

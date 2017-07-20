@@ -16,14 +16,14 @@ public class SpeexPlayer {
 	private long atimer ;
 
 
-	public SpeexPlayer(String fileName,Handler handler,long sendtimer,long atimer) {
+	public SpeexPlayer(String fileName,Handler handler) {
 
 		this.fileName = fileName;
 		this.handler = handler ;
 		this.sendtimer = sendtimer ;
 		this.atimer = atimer;
 		try {
-			speexdec = new SpeexDecoder(new File(this.fileName),handler,sendtimer,atimer);
+			speexdec = new SpeexDecoder(new File(this.fileName),handler);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

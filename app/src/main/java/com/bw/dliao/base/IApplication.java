@@ -1,19 +1,24 @@
 package com.bw.dliao.base;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.bw.dliao.R;
 import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.dao.DaoMaster;
 import com.bw.dliao.dao.DaoSession;
 import com.bw.dliao.utils.AMapUtils;
 import com.bw.dliao.utils.PreferencesUtils;
+import com.getkeepsafe.relinker.ReLinker;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
@@ -91,7 +96,20 @@ public class IApplication extends MobApplication {
 
     private void initJNI(){
         System.loadLibrary("core");
-        System.loadLibrary("speex");
+//        System.loadLibrary("speex");
+        ReLinker.loadLibrary(this, "speex", new ReLinker.LoadListener() {
+            @Override
+            public void success() {
+                System.out.println("t =success  ");
+                /* Yay */
+            }
+
+            @Override
+            public void failure(Throwable t) {
+                /* Boo */
+                System.out.println("t =failure  " + t);
+            }
+        });
     }
 
     public void aMap(){
@@ -185,8 +203,35 @@ public class IApplication extends MobApplication {
 
             }
         });
+    }
+
+
+    public static void ring(){
+        SoundPool soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC,0);
+
+        soundPool.load(application, R.raw.avchat_ring,1);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                soundPool.play(sampleId,1, 1, 0, 0, 1);
+            }
+        });
 
     }
 
+
+    public static void callTo(){
+        SoundPool soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC,0);
+
+        soundPool.load(application, R.raw.avchat_connecting,1);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                soundPool.play(sampleId,1, 1, 0, 0, 1);
+            }
+        });
+
+
+    }
 
 }

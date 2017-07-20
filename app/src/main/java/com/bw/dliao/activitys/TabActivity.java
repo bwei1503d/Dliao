@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bw.dliao.R;
 import com.bw.dliao.base.IActivity;
+import com.bw.dliao.base.IApplication;
 import com.bw.dliao.fragments.FirstFragment;
 import com.bw.dliao.fragments.FourthFragment;
 import com.bw.dliao.fragments.SecondFragment;
@@ -127,6 +128,8 @@ public class TabActivity extends IActivity implements ButtomLayout.OnSelectListe
             // call type
             String type = intent.getStringExtra("type");
             //跳转到通话页面
+
+            IApplication.ring();
 
             TelActivity.startTelActivity(2,from,TabActivity.this);
 

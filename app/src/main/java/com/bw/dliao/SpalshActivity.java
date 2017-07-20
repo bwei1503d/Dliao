@@ -42,7 +42,9 @@ public class SpalshActivity extends IActivity {
         textView = (TextView) findViewById(R.id.textview);
 
 
-        toIActivity(TabActivity.class, null, 0);
+        toIActivity(SystemChatActivity.class, null, 0);
+
+
 
 
     }

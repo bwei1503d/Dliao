@@ -38,11 +38,11 @@ public class SpeexDecoder {
 	private long atimer ;
 
 
-	public SpeexDecoder(File srcPath,Handler handler,long sendtimer,long atimer) throws Exception {
+	public SpeexDecoder(File srcPath,Handler handler) throws Exception {
 		this.srcPath = srcPath;
 		this.handler = handler ;
-		this.sendtimer = sendtimer ;
-		this.atimer = atimer;
+//		this.sendtimer = sendtimer ;
+//		this.atimer = atimer;
 	}
 
 	private void initializeAndroidAudio(int sampleRate) throws Exception {
