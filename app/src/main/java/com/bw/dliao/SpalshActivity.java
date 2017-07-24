@@ -38,11 +38,10 @@ public class SpalshActivity extends IActivity {
 
 
         button = (Button) findViewById(R.id.btn);
-
         textView = (TextView) findViewById(R.id.textview);
 
 
-        toIActivity(SystemChatActivity.class, null, 0);
+        toIActivity(TabActivity.class, null, 0);
 
 
 

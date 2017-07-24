@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.dliao.R;
+import com.bw.dliao.activitys.CChativity;
 import com.bw.dliao.activitys.ChatActivity;
 import com.bw.dliao.activitys.SystemChatActivity;
+import com.bw.dliao.activitys.VideoActivity;
 import com.bw.dliao.activitys.VoiceActivity;
 import com.bw.dliao.adapter.Fragment_second_Adapter;
 import com.bw.dliao.base.IApplication;
@@ -26,6 +28,7 @@ import com.bw.dliao.bean.FActionFriendBean;
 import com.bw.dliao.network.BaseObserver;
 import com.bw.dliao.network.RetrofitManager;
 import com.google.gson.Gson;
+import com.hyphenate.chat.EMClient;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
@@ -98,9 +101,18 @@ public class SecondFragment extends Fragment {
             public void onItemClickListener(int position, View view,int uid) {
 
 
-                Intent intent =  new Intent(getActivity(), VoiceActivity.class) ;
-                intent.putExtra("uid",uid);
-                startActivity(intent);
+//                Intent intent =  new Intent(getActivity(), VideoActivity.class) ;
+//                intent.putExtra("uid",uid+"");
+//                intent.putExtra("type","1");
+//                startActivity(intent);
+//
+
+
+                if(!EMClient.getInstance().isConnected()){
+                    IApplication.getApplication().emLogin();
+                    return;
+                }
+                VideoActivity.startTelActivity(1,uid+"",getActivity());
 
 
 

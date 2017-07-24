@@ -131,7 +131,7 @@ public class TabActivity extends IActivity implements ButtomLayout.OnSelectListe
 
             IApplication.ring();
 
-            TelActivity.startTelActivity(2,from,TabActivity.this);
+            VideoActivity.startTelActivity(2,from,TabActivity.this);
 
 
         }

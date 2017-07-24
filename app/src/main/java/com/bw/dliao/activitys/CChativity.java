@@ -14,9 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bw.dliao.R;
 import com.bw.dliao.adapter.CChativityAdapter;
+import com.bw.dliao.base.IApplication;
 import com.bw.dliao.utils.PreferencesUtils;
 import com.bw.dliao.widget.keyboard.KeyBoardHelper;
 import com.hyphenate.EMCallBack;
@@ -107,11 +109,11 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
         receive();
 
 
-       EMConversation conversation =  EMClient.getInstance().chatManager().getConversation("1");
-       List<EMMessage>  list =  conversation.getAllMessages() ;
-        for (int i=0;i<list.size();i++){
-            System.out.println("i == " + list.get(i).getMsgId() + list.get(i).getFrom() + " " + list.get(i).getTo() + "   " + list.get(i).getBody().toString());
-        }
+//       EMConversation conversation =  EMClient.getInstance().chatManager().getConversation("1");
+//       List<EMMessage>  list =  conversation.getAllMessages() ;
+//        for (int i=0;i<list.size();i++){
+//            System.out.println("i == " + list.get(i).getMsgId() + list.get(i).getFrom() + " " + list.get(i).getTo() + "   " + list.get(i).getBody().toString());
+//        }
 
 
 
@@ -196,10 +198,17 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
 
 
     public void setTextMessage(){
+
+        if (!EMClient.getInstance().isConnected()) {
+            IApplication.getApplication().emLogin();
+        }
+        System.out.println("EMClient.getInstance().isConnected() = " + EMClient.getInstance().isConnected());
         int nextInt =  new Random().nextInt(100) ;
         final EMMessage emMessage =  EMMessage.createTxtSendMessage(nextInt+"", "1");
         EMClient.getInstance().chatManager().sendMessage(emMessage);
 
+
+        Toast.makeText(this, ""+emMessage.getFrom() + "  " + emMessage.getTo(), Toast.LENGTH_SHORT).show();
 
         System.out.println("emMessage getMsgId= " + emMessage.getMsgId());
 
@@ -224,6 +233,7 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
             @Override
             public void onError(int i, String s) {
 
+                System.out.println("i = " + i + " s " + s);
             }
 
             @Override
@@ -250,6 +260,7 @@ public class CChativity extends Activity implements KeyBoardHelper.OnKeyBoardSta
             public void onMessageReceived(List<EMMessage> messages) {
                 //收到消息
                 System.out.println("onMessageReceived messages = " + messages);
+                Toast.makeText(CChativity.this, "onMessageReceived", Toast.LENGTH_SHORT).show();
             }
 
             @Override

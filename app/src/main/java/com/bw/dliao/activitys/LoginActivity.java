@@ -171,6 +171,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
                             Toast.makeText(LoginActivity.this, "登陆成功，即将跳转",Toast.LENGTH_SHORT).show();
 
 
+                            IApplication.getApplication().emLogin();
 
 
 

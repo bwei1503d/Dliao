@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.bw.dliao.R;
 import com.bw.dliao.base.IActivity;
+import com.bw.dliao.base.IApplication;
 import com.bw.dliao.utils.PreferencesUtils;
 import com.bw.dliao.widget.EditTextPreIme;
 import com.bw.dliao.widget.keyboard.KeyBoardHelper;
@@ -59,12 +60,14 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
 
 
 
+    String uid ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cchativity);
         ButterKnife.bind(this);
 
+        uid = getIntent().getExtras().getInt("uid")+"" ;
 
         KeyBoardHelper helper = new KeyBoardHelper(this);
         helper.onCreate();
@@ -208,10 +211,14 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
 
         //创建一条文本消息，content为消息文字内容，toChatUsername为对方用户或者群聊的id，后文皆是如此
 
+        if(!EMClient.getInstance().isConnected()){
+            IApplication.getApplication().emLogin();
+        }
+
         int random = new Random().nextInt(100);
         System.out.println("random = " + random);
 
-       final  EMMessage message = EMMessage.createTxtSendMessage(random+"", "74");
+       final  EMMessage message = EMMessage.createTxtSendMessage(random+"", uid);
 
         System.out.println("i = " + message.getFrom() + "  " + message.getTo() + "  " + message.getBody().toString() + " " + message.getMsgId() + " " + message.getMsgTime());
 
@@ -230,6 +237,8 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
 
             @Override
             public void onError(int i, String s) {
+
+                System.out.println("i = " + i + " s " + s);
 
             }
 
@@ -263,7 +272,7 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
             @Override
             public void onMessageReceived(List<EMMessage> messages) {
                 //收到消息
-                
+
                 if(messages.size() > 0){
                     System.out.println("messages.get(0).getBody() = " + messages.get(0).getBody());
                 }
@@ -273,6 +282,7 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
             @Override
             public void onCmdMessageReceived(List<EMMessage> messages) {
                 //收到透传消息
+                System.out.println("messages onCmdMessageReceived = " + messages);
             }
 
             @Override
