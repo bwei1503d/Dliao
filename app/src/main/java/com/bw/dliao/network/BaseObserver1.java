@@ -39,10 +39,9 @@ public abstract class BaseObserver1<T> implements Observer<String> {
      */
 
     @Override
-    public void onSubscribe(@Noll Disposable d) {
+    public void onSubscribe( Disposable d) {
 
 
-        Math.
 
     }
 

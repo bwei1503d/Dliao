@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bw.dliao">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -116,11 +118,22 @@
         <!-- amap -->
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".activitys.ChatActivity" android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activitys.ChatActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
             android:name=".activitys.CChativity"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity android:name=".activitys.VoiceActivity"></activity>
+        <activity android:name=".activitys.VoiceActivity" />
+        <activity android:name=".activitys.SystemChatActivity" />
+        <activity
+            android:name=".activitys.TelActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activitys.VideoActivity"
+            android:launchMode="singleInstance" />
+        <activity android:name=".activitys.ThreadActivity"></activity>
+        <activity android:name=".activitys.TestActivity" />
     </application>
 
 </manifest>

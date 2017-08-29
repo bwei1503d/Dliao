@@ -1,12 +1,14 @@
 package com.bw.dliao.activitys;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -72,6 +74,7 @@ public class ChatActivity extends IActivity implements KeyBoardHelper.OnKeyBoard
         KeyBoardHelper helper = new KeyBoardHelper(this);
         helper.onCreate();
         helper.setOnKeyBoardStatusChangeListener(this);
+
 
 
         keyHeight = PreferencesUtils.getValueByKey(this, "kh", 0);
