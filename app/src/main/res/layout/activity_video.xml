@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/avchat_call_bg"
+    tools:context="com.bw.dliao.activitys.TelActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hyphenate.media.EMCallSurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/surface_big"/>
+
+
+        <com.hyphenate.media.EMCallSurfaceView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/surface_small"/>
+
+
+    </FrameLayout>
+
+
+    <TextView
+        android:text="211111"
+        android:id="@+id/tel_activity_hint"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+
+
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal" android:layout_gravity="center_horizontal">
+
+
+        <Button
+            android:layout_alignParentLeft="true"
+            android:textColor="#FFFFFF"
+            android:id="@+id/tel_activity_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="接听电话"/>
+
+        <Button
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFFFFF"
+            android:id="@+id/tel_activity_handup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="挂断电话"/>
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:textColor="#FFFFFF"
+            android:id="@+id/tel_activity_disaccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拒绝接听"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

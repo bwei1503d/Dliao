@@ -1,5 +1,7 @@
 package com.bw.dliao.bean;
 
+import com.bw.dliao.bean.base.BaseBean;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
@@ -15,7 +17,7 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 /**
  * Created by muhanxi on 17/7/8.
  */
-public class IndexBean {
+public class IndexBean extends BaseBean {
 
 
     /**

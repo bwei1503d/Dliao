@@ -146,7 +146,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
                 map.put("user.password", Md5Utils.getMD5(password));
                 map.put("user.secretkey", rsaRandomKey);
 
-                RetrofitManager.post(Constants.LOGIN_ACTION, map, new BaseObserver() {
+                RetrofitManager.post(Constants.LOGIN_ACTION, map, new BaseObserver<String>() {
                     @Override
                     public void onSuccess(String result) {
                         System.out.println("result = " + result);

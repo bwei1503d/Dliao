@@ -97,6 +97,7 @@ public class VideoActivity extends Activity {
 
         }
 
+
         EMClient.getInstance().callManager().setSurfaceView(surfaceSmall, surfaceBig);
 
 

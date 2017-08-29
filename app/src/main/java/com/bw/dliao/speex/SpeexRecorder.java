@@ -4,6 +4,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Handler;
+import android.os.Message;
 
 public class SpeexRecorder implements Runnable {
 	private Handler mHandler;
@@ -22,6 +23,7 @@ public class SpeexRecorder implements Runnable {
 		this.mHandler = handler;
 	}
 
+	@Override
 	public void run() {
 
 		try {
@@ -73,6 +75,11 @@ public class SpeexRecorder implements Runnable {
 				}
 				encoder.putData(tempBuffer, bufferRead);
 				getAmplitude(tempBuffer, bufferRead);
+				Message msg = new Message();
+				msg.what = 20 ;
+				msg.obj = gdb ;
+				mHandler.sendMessage(msg);
+				System.out.println("gdb = " + gdb);
 			}
 			recordInstance.stop();
 			recordInstance.release();

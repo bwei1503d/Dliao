@@ -5,6 +5,29 @@
     android:layout_height="match_parent"
    >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_id_fourth"/>
+
+
+    <Button
+        android:text="开始录音"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_recoder"/>
+
+    <Button
+        android:text="停止录音"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_unrecoder"/>
+
+    <Button
+        android:text="播放录音"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_playrecoder"/>
 
 
 </LinearLayout>

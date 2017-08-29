@@ -1,19 +1,28 @@
 package com.bw.dliao;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.platform.comapi.map.M;
 import com.bw.dliao.activitys.CChativity;
 import com.bw.dliao.activitys.ChatActivity;
 import com.bw.dliao.activitys.LoginActivity;
 import com.bw.dliao.activitys.SystemChatActivity;
 import com.bw.dliao.activitys.TabActivity;
+import com.bw.dliao.activitys.TestActivity;
+import com.bw.dliao.activitys.ThreadActivity;
 import com.bw.dliao.activitys.VoiceActivity;
 import com.bw.dliao.base.IActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +38,14 @@ public class SpalshActivity extends IActivity {
     Button btn;
     private Button button;
     private TextView textView;
+
+    Handler handler = new Handler(){
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

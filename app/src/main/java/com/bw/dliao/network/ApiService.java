@@ -1,5 +1,9 @@
 package com.bw.dliao.network;
 
+import com.baidu.platform.comapi.map.C;
+
+import org.reactivestreams.Subscriber;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -20,9 +24,11 @@ import retrofit2.http.Url;
  * Created by muhanxi on 17/6/19.
  */
 
-public interface ApiService {
+public interface  ApiService {
 
 
+    @GET
+    public Call<String> get1(@Url String url);
 
 
 

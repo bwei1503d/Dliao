@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:orientation="horizontal">
 
-            <EditText
+            <com.bw.dliao.widget.EditTextPreIme
                 android:id="@+id/chat_edittext"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"

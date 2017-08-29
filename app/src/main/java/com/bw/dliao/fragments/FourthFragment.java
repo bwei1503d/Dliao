@@ -7,10 +7,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.dliao.R;
 import com.bw.dliao.speex.SpeexPlayer;
@@ -56,6 +58,12 @@ public class FourthFragment extends Fragment {
             super.handleMessage(msg);
             switch (msg.what){
 
+                case 1:
+                    System.out.println("Thread.currentThread().getName() = " + Thread.currentThread());
+
+
+
+                    break;
             }
         }
     } ;
@@ -71,6 +79,37 @@ public class FourthFragment extends Fragment {
 
         textviewIdFourth.setText(nickName);
 
+
+        btnRecoder.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        String filePath = Environment.getExternalStorageDirectory() + File.separator + SDCardUtils.DLIAO;
+                        System.out.println("filePath:" + filePath);
+                        File file = new File(filePath  + "/");
+                        System.out.println("file:" + file);
+                        if (!file.exists()) {
+                            file.mkdirs();
+                        }
+
+
+
+
+                        fileName = file + File.separator + System.currentTimeMillis() + ".spx";
+                        System.out.println("保存文件名：＝＝ " + fileName);
+                        recorderInstance = new SpeexRecorder(fileName, handler);
+                        Thread th = new Thread(recorderInstance);
+                        th.start();
+                        recorderInstance.setRecording(true);
+                        break;
+                }
+
+                return false;
+            }
+        });
+
         return view;
     }
 
@@ -85,20 +124,20 @@ public class FourthFragment extends Fragment {
         switch (view.getId()) {
             case R.id.btn_recoder:
 
-                String filePath = Environment.getExternalStorageDirectory() + File.separator + SDCardUtils.DLIAO;
-                System.out.println("filePath:" + filePath);
-                File file = new File(filePath  + "/");
-                System.out.println("file:" + file);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-
-                fileName = file + File.separator + System.currentTimeMillis() + ".spx";
-                System.out.println("保存文件名：＝＝ " + fileName);
-                recorderInstance = new SpeexRecorder(fileName, handler);
-                Thread th = new Thread(recorderInstance);
-                th.start();
-                recorderInstance.setRecording(true);
+//                String filePath = Environment.getExternalStorageDirectory() + File.separator + SDCardUtils.DLIAO;
+//                System.out.println("filePath:" + filePath);
+//                File file = new File(filePath  + "/");
+//                System.out.println("file:" + file);
+//                if (!file.exists()) {
+//                    file.mkdirs();
+//                }
+//
+//                fileName = file + File.separator + System.currentTimeMillis() + ".spx";
+//                System.out.println("保存文件名：＝＝ " + fileName);
+//                recorderInstance = new SpeexRecorder(fileName, handler);
+//                Thread th = new Thread(recorderInstance);
+//                th.start();
+//                recorderInstance.setRecording(true);
 
 
                 break;

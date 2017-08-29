@@ -13,11 +13,18 @@ public abstract class BaseMvpActivity<V,T extends BasePresenter<V>> extends IAct
     public abstract T initPresenter();
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_mvp);
         presenter = initPresenter();
+
+
+
+
+
 
 
     }
