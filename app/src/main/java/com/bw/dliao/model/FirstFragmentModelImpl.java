@@ -15,6 +15,7 @@ import com.google.gson.JsonSyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.R.attr.tag;
 import static com.socks.library.KLog.I;
 
 /**
@@ -32,34 +33,38 @@ public class FirstFragmentModelImpl implements FirstFragmentModel {
 //        map.put("pageSize","20");
         map.put("user.currenttimer",currenttimer+"");
 
-        RetrofitManager.post(Constants.ALL_USER, map, new BaseObserver1<IndexBean>() {
+        RetrofitManager.post(Constants.ALL_USER, map, new BaseObserver1<IndexBean>("age") {
             @Override
-            public void onSuccess(IndexBean result) {
+            public void onSuccess(IndexBean result, String tag) {
 
-                try {
-//                    Gson gson = new Gson();
-//                    IndexBean indexBean =   gson.fromJson(result, IndexBean.class);
-
-
-                    Toast.makeText(IApplication.getApplication(), ""+result.getData().size(), Toast.LENGTH_SHORT).show();
-                    listener.onSuccess(result,currenttimer);
-
-
-
-//                    FirstFragmentDaoUtils.insert(indexBean.getData());
-
-
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                }
             }
+
             @Override
             public void onFailed(int code) {
-                listener.onFailed(code,currenttimer);
-            }
-        }
-        );
 
+            }
+        });
+
+
+
+//        public void getData1(Map map,String tag) {
+//
+////            Map<String,String> map = new HashMap<String, String>();
+////        map.put("pageIndex",page+"");
+////        map.put("pageSize","20");
+////            map.put("user.currenttimer",currenttimer+"");
+//
+//            RetrofitManager.post(Constants.ALL_USER, map, new BaseObserver1<IndexBean>(tag) {
+//                @Override
+//                public void onSuccess(IndexBean result, String tag) {
+//
+//                }
+//
+//                @Override
+//                public void onFailed(int code) {
+//
+//                }
+//            });
 
     }
 }

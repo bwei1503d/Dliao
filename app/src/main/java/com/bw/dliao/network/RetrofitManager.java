@@ -26,6 +26,9 @@ public class RetrofitManager {
 
 
 
+
+
+
     private static OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .cookieJar(new CookiesManager(IApplication.application))
             .connectTimeout(20, TimeUnit.SECONDS)

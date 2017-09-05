@@ -217,8 +217,17 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentView, FirstFragm
         System.out.println("2222222222222222222"+s);
 
 
-        startActivity(i);
+//        startActivity(i);
 
+        Bundle bundle = new Bundle();
+
+        bundle.putString("user_id",userId+"");
+
+        bundle.putString("location",s);
+
+        TabActivity tabActivity = (TabActivity) getActivity() ;
+
+        tabActivity.toIActivity(XiangQingActivity.class,bundle,1);
 
     }
 

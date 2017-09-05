@@ -37,6 +37,10 @@ public abstract class BaseObserver1<T> implements Observer<String> {
      * 7 rxjava retrofit mvp
      * @param d
      */
+    private String tag;
+    public BaseObserver1(String tag){
+        this.tag = tag;
+    }
 
     @Override
     public void onSubscribe( Disposable d) {
@@ -59,7 +63,7 @@ public abstract class BaseObserver1<T> implements Observer<String> {
             BaseBean baseBean = (BaseBean) t ;
             Toast.makeText(IApplication.getApplication(), ""+baseBean.getResult_code(), Toast.LENGTH_SHORT).show();
             KLog.e(s);
-            onSuccess(t);
+            onSuccess(t,tag);
         } catch (Exception e) {
             onFailed(JSON_FORMAT_ERROR);
             e.printStackTrace();
@@ -99,7 +103,7 @@ public abstract class BaseObserver1<T> implements Observer<String> {
     }
 
 
-    public abstract void onSuccess(T result);
+    public abstract void onSuccess(T result,String tag);
 
     /**
      * code

@@ -1,8 +1,10 @@
 package com.bw.dliao.base;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 
 import com.bw.dliao.R;
+import com.google.gson.Gson;
 
 
 public abstract class BaseMvpActivity<V,T extends BasePresenter<V>> extends IActivity {
@@ -25,9 +27,9 @@ public abstract class BaseMvpActivity<V,T extends BasePresenter<V>> extends IAct
 
 
 
-
-
     }
+
+
 
 
     @Override

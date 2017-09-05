@@ -2,6 +2,7 @@ package com.bw.dliao.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -92,6 +93,7 @@ public class IActivity extends FragmentActivity implements View.OnClickListener{
         }else {
             startActivityForResult(intent,requestCode);
         }
+//        ActivityOptionsCompat.makeCustomAnimation(this,R.anim.push_right_in,R.anim.push_left_out);
     }
 
 

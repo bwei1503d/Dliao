@@ -1,6 +1,7 @@
 package com.bw.dliao;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import com.bw.dliao.activitys.TestActivity;
 import com.bw.dliao.activitys.ThreadActivity;
 import com.bw.dliao.activitys.VoiceActivity;
 import com.bw.dliao.base.IActivity;
+import com.bw.dliao.service.RobService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +55,8 @@ public class SpalshActivity extends IActivity {
         setContentView(R.layout.activity_spalsh);
         ButterKnife.bind(this);
 
+
+//        startService(new Intent(this, RobService.class));
 
         button = (Button) findViewById(R.id.btn);
         textView = (TextView) findViewById(R.id.textview);
